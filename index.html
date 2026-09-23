@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>فاکتور خرید</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+*{box-sizing:border-box}
+:root{
+  --blue:#1769e0; --pink:#ed1670; --green:#20a94b; --orange:#ff8a00;
+  --purple:#7040c7; --red:#e22b25; --ink:#18213a; --cream:#fffdf6;
+}
+body{
+  margin:0; font-family:Tahoma,"Vazirmatn","Noto Naskh Arabic",sans-serif;
+  background:linear-gradient(135deg,#eef6ff,#fff4fb 45%,#f4fff4);
+  color:var(--ink); padding:12px;
+}
+button,input,select{font:inherit}
+.app{max-width:760px;margin:auto}
+.top{
+  background:linear-gradient(135deg,#fff,#fff9ef);
+  border:3px solid #1c9b66;border-radius:26px;padding:14px 14px 12px;
+  box-shadow:0 8px 28px #00000018; margin-bottom:12px; position:relative; overflow:hidden;
+}
+.top:before,.top:after{content:"🌸";position:absolute;font-size:45px;opacity:.75;top:8px}
+.top:before{left:10px}.top:after{right:10px}
+h1{text-align:center;color:#d92323;font-size:34px;margin:5px 0 4px;text-shadow:2px 2px #ffd8d8}
+.sub{text-align:center;color:#193f9b;font-weight:900;font-size:19px}
+.panel{
+  background:#ffffffec;border:2px solid #d8e5ff;border-radius:20px;
+  padding:12px;box-shadow:0 6px 20px #00000012;margin-bottom:12px
+}
+.form-grid{display:grid;grid-template-columns:1.4fr .8fr .75fr 1fr;gap:8px}
+label{font-size:12px;font-weight:900;color:#4a5670;margin:0 0 4px;display:block}
+input,select{
+  width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:10px 8px;
+  background:#fff;outline:none;color:#17213a
+}
+input:focus,select:focus{border-color:#4d8df7;box-shadow:0 0 0 3px #4d8df71b}
+.btn{
+  border:0;border-radius:13px;padding:11px 13px;font-weight:900;cursor:pointer;
+  box-shadow:0 4px 10px #00000018; transition:.12s transform,.12s filter
+}
+.btn:active{transform:scale(.97)}
+.add{background:linear-gradient(135deg,#18a34a,#07883b);color:white;width:100%;margin-top:9px}
+.save{background:linear-gradient(135deg,#e92828,#ba1111);color:white;flex:1}
+.image{background:linear-gradient(135deg,#1769e0,#0b4fb7);color:white;flex:1}
+.clear{background:#f2f5fa;color:#29334a}
+.actions{display:flex;gap:8px;margin-top:10px}
+.count{font-weight:900;color:#1a5dc6;margin-bottom:8px}
+.table-wrap{overflow-x:auto;border-radius:15px;border:1px solid #d8e1ee}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:650px;background:white}
+th,td{padding:9px 7px;text-align:center;border-left:1px solid #fff;border-bottom:1px solid #fff;font-weight:800}
+th{color:#fff;font-size:14px}
+th:nth-child(1){background:var(--purple)} th:nth-child(2){background:var(--pink)}
+th:nth-child(3){background:var(--green)} th:nth-child(4){background:var(--blue)}
+th:nth-child(5){background:var(--orange)} th:nth-child(6){background:#a21caf}
+td{background:#f8fbff}
+tr:nth-child(even) td{background:#fff3fa}
+.num{font-weight:900}
+.money{direction:ltr;unicode-bidi:plaintext}
+.edit{background:#1769e0;color:white;padding:6px 8px;border-radius:9px;border:0}
+.del{background:#ef3340;color:white;padding:6px 8px;border-radius:9px;border:0;margin-right:4px}
+.total{
+  margin-top:12px;border:4px solid #e52c20;border-radius:20px;
+  background:linear-gradient(135deg,#fff36b,#ffc928);
+  padding:14px;text-align:center;box-shadow:0 5px 15px #0002
+}
+.total small{display:block;color:#8e1710;font-weight:900;font-size:16px}
+.total strong{display:block;color:#a40000;font-size:31px;margin-top:3px}
+.notice{text-align:center;color:#60708d;font-size:12px;margin-top:8px}
+.empty{text-align:center;padding:25px;color:#77849a;font-weight:700}
+.invoice-card{
+  position:fixed;left:-10000px;top:0;width:900px;background:#fff;
+}
+#capture{
+  width:900px;padding:22px;background:linear-gradient(135deg,#fffdf6,#f7fbff);
+  border:6px solid #16885b;border-radius:30px;overflow:hidden;
+}
+.capture-title{font-size:46px;text-align:center;color:#d92323;font-weight:1000;margin:3px 0 5px}
+.capture-sub{text-align:center;font-size:22px;color:#163f9c;font-weight:900;margin-bottom:16px}
+.capture-table{width:100%;border-collapse:separate;border-spacing:3px;table-layout:fixed}
+.capture-table th{font-size:20px;padding:12px 7px}
+.capture-table td{font-size:19px;padding:10px 6px}
+.capture-total{margin-top:14px;border:5px solid #e32b22;border-radius:22px;background:#ffd12b;text-align:center;padding:16px;font-size:28px;font-weight:1000;color:#9d0808}
+@media(max-width:620px){
+  body{padding:7px}.top{border-radius:20px}h1{font-size:29px}
+  .form-grid{grid-template-columns:1fr 1fr}
+  .form-grid .wide{grid-column:1/-1}
+  .panel{padding:9px}
+  .btn{padding:10px 9px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <h1>فاکتور خرید</h1>
+    <div class="sub">خرید روزانه</div>
+  </div>
+
+  <div class="panel">
+    <div class="form-grid">
+      <div class="wide">
+        <label>نام جنس</label>
+        <input id="name" placeholder="مثلاً شکر">
+      </div>
+      <div>
+        <label>مقدار</label>
+        <input id="qty" type="number" min="0" step="0.01" placeholder="مثلاً 3">
+      </div>
+      <div>
+        <label>واحد</label>
+        <select id="unit">
+          <option>عدد</option><option>کیلو</option><option>نیم کیلو</option>
+          <option>شانه</option><option>پاکت</option><option>بسته</option>
+          <option>لیتر</option><option>متر</option><option>دست</option>
+        </select>
+      </div>
+      <div>
+        <label>قیمت جنس (تومان)</label>
+        <input id="price" type="text" inputmode="numeric" autocomplete="off" placeholder="مثلاً 10,000">
+      </div>
+    </div>
+    <button class="btn add" id="addBtn">＋ افزودن جنس به فاکتور</button>
+  </div>
+
+  <div class="panel">
+    <div class="count" id="count">۰ جنس در فاکتور</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>شماره</th><th>جنس</th><th>مقدار</th><th>واحد</th><th>قیمت واحد (تومان)</th><th>جمع مبلغ (تومان)</th><th>عملیات</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty">هنوز جنسی اضافه نشده است.</div>
+    </div>
+    <div class="total"><small>جمع مبلغ کل</small><strong id="total">۰ تومان</strong></div>
+    <div class="actions">
+      <button class="btn save" id="saveBtn">✓ ثبت فاکتور</button>
+      <button class="btn image" id="imageBtn">▣ ذخیره عکس</button>
+      <button class="btn clear" id="clearBtn">پاک‌کردن</button>
+    </div>
+    <div class="notice">فاکتور ثبت‌شده در همین گوشی نگهداری می‌شود و می‌توانید تصویر آن را ذخیره کنید.</div>
+  </div>
+</div>
+
+<div class="invoice-card"><div id="capture"></div></div>
+
+<script>
+const $=id=>document.getElementById(id);
+let items=[];
+let editIndex=-1;
+const fmt=n=>new Intl.NumberFormat('fa-IR').format(Math.round(Number(n)||0));
+const parseMoney=v=>Math.max(0,Number(String(v??'').replace(/[^0-9.]/g,''))||0);
+const clean=n=>Math.max(0,Number(n)||0);
+
+function render(){
+  const tb=$('rows'); tb.innerHTML='';
+  $('empty').style.display=items.length?'none':'block';
+  items.forEach((x,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td class="num">${fmt(i+1)}</td>
+      <td>${esc(x.name)}</td>
+      <td>${fmt(x.qty)}</td>
+      <td>${esc(x.unit)}</td>
+      <td class="money">${fmt(x.price)}</td>
+      <td class="money">${fmt(clean(x.qty)*clean(x.price))}</td>
+      <td><button class="edit" onclick="editItem(${i})">ویرایش</button><button class="del" onclick="deleteItem(${i})">حذف</button></td>`;
+    tb.appendChild(tr);
+  });
+  const total=items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0);
+  $('total').textContent=fmt(total)+' تومان';
+  $('count').textContent=fmt(items.length)+' جنس در فاکتور';
+}
+function esc(s){
+  return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+function resetForm(){ $('name').value='';$('qty').value='';$('price').value='';$('unit').value='عدد';editIndex=-1;$('addBtn').textContent='＋ افزودن جنس به فاکتور';}
+$('addBtn').onclick=()=>{
+  const name=$('name').value.trim(), qty=clean($('qty').value), unit=$('unit').value, price=parseMoney($('price').value);
+  if(!name){alert('لطفاً نام جنس را وارد کنید.');$('name').focus();return}
+  if(qty<=0){alert('مقدار جنس را وارد کنید.');$('qty').focus();return}
+  if(price<0){alert('قیمت درست نیست.');return}
+  const obj={name,qty,unit,price};
+  if(editIndex>=0) items[editIndex]=obj; else items.push(obj);
+  resetForm(); render(); saveDraft();
+};
+window.editItem=i=>{
+  const x=items[i]; $('name').value=x.name;$('qty').value=x.qty;$('unit').value=x.unit;$('price').value=fmt(x.price);
+  editIndex=i;$('addBtn').textContent='✓ ذخیره ویرایش';window.scrollTo({top:0,behavior:'smooth'});
+};
+$('price').addEventListener('input',e=>{const raw=e.target.value.replace(/[^0-9]/g,'');e.target.value=raw?Number(raw).toLocaleString('en-US'):'';});
+window.deleteItem=i=>{
+  if(confirm('این جنس از فاکتور حذف شود؟')){items.splice(i,1);render();saveDraft();}
+};
+function saveDraft(){localStorage.setItem('invoiceItems',JSON.stringify(items));}
+function loadDraft(){try{items=JSON.parse(localStorage.getItem('invoiceItems')||'[]')||[]}catch{items=[]}render();}
+$('clearBtn').onclick=()=>{
+  if(items.length && confirm('همه جنس‌های این فاکتور پاک شود؟')){items=[];resetForm();saveDraft();render();}
+};
+$('saveBtn').onclick=()=>{
+  if(!items.length){alert('اول حداقل یک جنس اضافه کنید.');return}
+  localStorage.setItem('lastInvoice',JSON.stringify({items,total:items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0),date:new Date().toISOString()}));
+  alert('فاکتور با موفقیت ثبت شد ✓');
+};
+function buildCapture(){
+  const total=items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0);
+  let html=`<div class="capture-title">فاکتور خرید</div><div class="capture-sub">خرید روزانه</div>
+  <table class="capture-table"><thead><tr><th style="background:#7040c7">شماره</th><th style="background:#ed1670">جنس</th><th style="background:#20a94b">مقدار</th><th style="background:#1769e0">واحد</th><th style="background:#ff8a00">قیمت واحد (تومان)</th><th style="background:#a21caf">جمع مبلغ (تومان)</th></tr></thead><tbody>`;
+  items.forEach((x,i)=>html+=`<tr><td>${fmt(i+1)}</td><td>${esc(x.name)}</td><td>${fmt(x.qty)}</td><td>${esc(x.unit)}</td><td>${fmt(x.price)}</td><td>${fmt(clean(x.qty)*clean(x.price))}</td></tr>`);
+  html+=`</tbody></table><div class="capture-total">جمع مبلغ کل: ${fmt(total)} تومان</div>`;
+  $('capture').innerHTML=html;
+}
+$('imageBtn').onclick=async()=>{
+  if(!items.length){alert('اول جنس‌ها را اضافه و سپس ثبت کنید.');return}
+  buildCapture();
+  const canvas=await html2canvas($('capture'),{scale:2.5,useCORS:true,backgroundColor:'#fff',logging:false});
+  const a=document.createElement('a');
+  a.download='فاکتور-خرید-'+new Date().toLocaleDateString('fa-IR').replaceAll('/','-')+'.png';
+  a.href=canvas.toDataURL('image/png',1);
+  a.click();
+};
+loadDraft();
+</script>
+</body>
+</html>
