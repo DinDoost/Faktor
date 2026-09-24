@@ -20,124 +20,136 @@ button,input,select{font:inherit}
 .app{max-width:760px;margin:auto}
 .top{
   background:linear-gradient(135deg,#fff,#fff9ef);
-  border:3px solid #1c9b66;border-radius:26px;padding:14px 14px 12px;
+  border:3px solid #1c9b66;border-radius:26px;padding:16px 14px 14px;
   box-shadow:0 8px 28px #00000018; margin-bottom:12px; position:relative; overflow:hidden;
 }
 .top:before,.top:after{content:"🌸";position:absolute;font-size:45px;opacity:.75;top:8px}
 .top:before{left:10px}.top:after{right:10px}
-h1{text-align:center;color:#d92323;font-size:42px;margin:3px 0 2px;text-shadow:2px 2px #ffd8d8;font-weight:1000}
-.invoice-code{text-align:center;color:#7040c7;font-size:22px;font-weight:1000;margin:0 0 3px}
 
-.page-date{text-align:center;color:#18213a;font-size:28px;font-weight:1000;direction:ltr;margin:0 0 2px}
+/* تقويم التاريخ */
+.date-container { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 6px; position: relative; z-index: 5; }
+.date-btn-wrapper {
+  position: relative; width: 40px; height: 40px; background: #eef5ff; border: 2px solid #c8d8f0;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 8px #0001; transition: 0.2s;
+}
+.date-btn-wrapper:active { transform: scale(0.92); }
+.calendar-icon { font-size: 22px; pointer-events: none; }
+#dateInput { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.page-date { color:#18213a; font-size:26px; font-weight:1000; direction:ltr; margin:0; }
+
+h1{text-align:center;color:#d92323;font-size:44px;margin:5px 0 2px;text-shadow:2px 2px #ffd8d8;font-weight:1000; position:relative; z-index:5;}
+.invoice-code{text-align:center;color:#7040c7;font-size:24px;font-weight:1000;margin:0 0 3px; position:relative; z-index:5;}
+
 .notes-box{margin-top:12px}
-textarea{width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:10px 8px;background:#fff;outline:none;color:#17213a;resize:vertical;font-family:inherit}
+textarea{width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:12px 10px;background:#fff;outline:none;color:#17213a;resize:vertical;font-family:inherit;font-size:16px; font-weight:700;}
 textarea:focus{border-color:#4d8df7;box-shadow:0 0 0 3px #4d8df71b}
-.capture-footer{margin-top:18px;border:3px solid #16885b;border-radius:18px;overflow:hidden;background:#fff;direction:rtl}
-.capture-footer-table{width:100%;border-collapse:collapse;table-layout:fixed}
-.capture-footer-table td{border:1px solid #d8e1ee;padding:14px 16px;vertical-align:top;font-size:20px;line-height:1.8}
-.capture-footer-table .footer-label{display:block;font-size:16px;font-weight:1000;margin-bottom:5px}
-.capture-footer-table .footer-notes{width:65%;text-align:right;background:#fbfdff}
-.capture-footer-table .footer-date{width:35%;text-align:left;direction:ltr;background:#f8fff9;font-weight:1000}
-.capture-footer-table .footer-date .footer-label{text-align:right;direction:rtl;color:#16885b}
-.capture-footer-table .footer-notes .footer-label{color:#1769e0}
-.capture-footer-table .footer-date-value{font-size:25px;white-space:nowrap}
-.panel{
-  background:#ffffffec;border:2px solid #d8e5ff;border-radius:20px;
-  padding:12px;box-shadow:0 6px 20px #00000012;margin-bottom:12px
-}
-.form-grid{display:grid;grid-template-columns:1.4fr .8fr .75fr 1fr;gap:8px}
-label{font-size:12px;font-weight:900;color:#4a5670;margin:0 0 4px;display:block}
-input,select{
-  width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:10px 8px;
-  background:#fff;outline:none;color:#17213a
-}
+
+/* جدول التطبيق */
+.panel{ background:#ffffffec;border:2px solid #d8e5ff;border-radius:20px; padding:16px;box-shadow:0 6px 20px #00000012;margin-bottom:12px }
+.form-grid{display:grid;grid-template-columns:1.4fr .8fr .75fr 1fr;gap:10px}
+label{font-size:13px;font-weight:900;color:#4a5670;margin:0 0 6px;display:block}
+input,select{ width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:12px 10px; background:#fff;outline:none;color:#17213a; font-size:16px; font-weight:700; }
 input:focus,select:focus{border-color:#4d8df7;box-shadow:0 0 0 3px #4d8df71b}
-.btn{
-  border:0;border-radius:13px;padding:11px 13px;font-weight:900;cursor:pointer;
-  box-shadow:0 4px 10px #00000018; transition:.12s transform,.12s filter
-}
-.btn:active{transform:scale(.97)}
-.add{background:linear-gradient(135deg,#18a34a,#07883b);color:white;width:100%;margin-top:9px}
+
+.btn{ border:0;border-radius:13px;padding:12px 14px;font-weight:900;font-size:16px;cursor:pointer; box-shadow:0 4px 10px #00000018; transition:.12s transform,.12s filter }
+.btn:active{transform:scale(.95)}
+.add{background:linear-gradient(135deg,#18a34a,#07883b);color:white;width:100%;margin-top:12px; font-size:18px;}
 .save{background:linear-gradient(135deg,#e92828,#ba1111);color:white;flex:1}
 .image{background:linear-gradient(135deg,#1769e0,#0b4fb7);color:white;flex:1}
-.clear{background:#f2f5fa;color:#29334a}
-.actions{display:flex;gap:8px;margin-top:10px}
-.count{font-weight:900;color:#1a5dc6;margin-bottom:8px}
+.clear{background:#f2f5fa;color:#29334a; border:2px solid #dbe5f4;}
+.actions{display:flex;gap:10px;margin-top:14px}
+.count{font-weight:900;color:#1a5dc6;font-size:16px; margin-bottom:10px;}
+
 .table-wrap{overflow-x:auto;border-radius:15px;border:1px solid #d8e1ee}
 table{width:100%;border-collapse:separate;border-spacing:0;min-width:650px;background:white}
-th,td{padding:9px 7px;text-align:center;border-left:1px solid #fff;border-bottom:1px solid #fff;font-weight:800}
-th{color:#fff;font-size:14px}
+th,td{padding:12px 7px;text-align:center;border-left:1px solid #fff;border-bottom:1px solid #fff;font-weight:800; font-size:16px;}
+th{color:#fff;font-size:15px}
 th:nth-child(1){background:var(--purple)} th:nth-child(2){background:var(--pink)}
 th:nth-child(3){background:var(--green)} th:nth-child(4){background:var(--blue)}
 th:nth-child(5){background:var(--orange)} th:nth-child(6){background:#a21caf}
 td{background:#f8fbff}
 tr:nth-child(even) td{background:#fff3fa}
-.num{font-weight:900}
-.money{direction:ltr;unicode-bidi:plaintext}
-.edit{background:#1769e0;color:white;padding:6px 8px;border-radius:9px;border:0}
-.del{background:#ef3340;color:white;padding:6px 8px;border-radius:9px;border:0;margin-right:4px}
-.total{
-  margin-top:12px;border:4px solid #e52c20;border-radius:20px;
-  background:linear-gradient(135deg,#fff36b,#ffc928);
-  padding:14px;text-align:center;box-shadow:0 5px 15px #0002
-}
-.total small{display:block;color:#8e1710;font-weight:900;font-size:16px}
-.total strong{display:block;color:#a40000;font-size:31px;margin-top:3px}
-.notice{text-align:center;color:#60708d;font-size:12px;margin-top:8px}
-.empty{text-align:center;padding:25px;color:#77849a;font-weight:700}
-.invoice-card{
-  position:fixed;left:-10000px;top:0;width:900px;background:#fff;
-}
-#capture{
-  width:900px;padding:22px;background:linear-gradient(135deg,#fffdf6,#f7fbff);
-  border:6px solid #16885b;border-radius:30px;overflow:hidden;
-}
-.capture-title{font-size:46px;text-align:center;color:#d92323;font-weight:1000;margin:3px 0 5px}
-.capture-sub{text-align:center;font-size:22px;color:#163f9c;font-weight:900;margin-bottom:16px}
-.capture-table{width:100%;border-collapse:separate;border-spacing:3px;table-layout:fixed}
-.capture-table th{font-size:20px;padding:12px 7px}
-.capture-table td{font-size:19px;padding:10px 6px}
-.capture-total{margin-top:14px;border:5px solid #e32b22;border-radius:22px;background:#ffd12b;text-align:center;padding:16px;font-size:28px;font-weight:1000;color:#9d0808}
 
-/* تیک سبز بزرگ داخل برگه، در انتهای توضیحات */
+.num{font-weight:1000; font-size:18px; color:var(--purple);}
+.money{direction:ltr;unicode-bidi:plaintext; font-weight:1000; font-size:18px; color:#0b4fb7;}
+.edit{background:#1769e0;color:white;padding:8px 10px;border-radius:9px;border:0; cursor:pointer;}
+.del{background:#ef3340;color:white;padding:8px 10px;border-radius:9px;border:0;margin-right:6px; cursor:pointer;}
+
+.total{
+  margin-top:16px;border:4px solid #e52c20;border-radius:20px;
+  background:linear-gradient(135deg,#fff36b,#ffc928);
+  padding:18px;text-align:center;box-shadow:0 6px 20px #0002
+}
+.total small{display:block;color:#8e1710;font-weight:900;font-size:18px}
+.total strong{display:block;color:#a40000;font-size:36px; font-weight:1000; margin-top:5px}
+.notice{text-align:center;color:#60708d;font-size:13px;margin-top:10px; font-weight:700;}
+.empty{text-align:center;padding:30px;color:#77849a;font-weight:700; font-size:16px;}
+
+/* الصورة المصدرة (الفاتورة) - أرقام كبيرة */
+.invoice-card{ position:fixed;left:-10000px;top:0;width:900px;background:#fff; }
+#capture{ width:900px;padding:26px;background:linear-gradient(135deg,#fffdf6,#f7fbff); border:6px solid #16885b;border-radius:30px;overflow:hidden; }
+.capture-title{font-size:52px;text-align:center;color:#d92323;font-weight:1000;margin:3px 0 5px}
+.capture-sub{text-align:center;font-size:26px;color:#163f9c;font-weight:900;margin-bottom:20px}
+.capture-table{width:100%;border-collapse:separate;border-spacing:4px;table-layout:fixed}
+.capture-table th{font-size:22px;padding:14px 8px}
+.capture-table td{font-size:24px;padding:12px 8px; font-weight:900;}
+
+.capture-total{margin-top:20px;border:5px solid #e32b22;border-radius:22px;background:#ffd12b;text-align:center;padding:22px;font-size:34px;font-weight:1000;color:#9d0808}
+
+.capture-footer{margin-top:22px;border:4px solid #16885b;border-radius:20px;overflow:hidden;background:#fff;direction:rtl}
+.capture-footer-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.capture-footer-table td{border:1px solid #d8e1ee;padding:18px;vertical-align:top;font-size:22px;line-height:1.8}
+.capture-footer-table .footer-label{display:block;font-size:18px;font-weight:1000;margin-bottom:8px}
+.capture-footer-table .footer-notes{width:60%;text-align:right;background:#fbfdff}
+.capture-footer-table .footer-date{width:40%;text-align:left;direction:ltr;background:#f8fff9;font-weight:1000}
+.capture-footer-table .footer-date .footer-label{text-align:right;direction:rtl;color:#16885b}
+.capture-footer-table .footer-notes .footer-label{color:#1769e0}
+.capture-footer-table .footer-date-value{font-size:30px;white-space:nowrap; color:#000;}
+
 .notes-success-sticker{
   display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;
-  width:42px;height:42px;margin-right:12px;border-radius:50%;
-  background:#20a94b;color:#fff;border:3px solid #fff;
-  box-shadow:0 3px 8px #0003;font-size:29px;font-weight:1000;line-height:1;
+  width:48px;height:48px;margin-right:14px;border-radius:50%;
+  background:#20a94b;color:#fff;border:4px solid #fff;
+  box-shadow:0 4px 10px #0003;font-size:32px;font-weight:1000;line-height:1;
 }
 
-/* استیکر موفقیت بعد از ذخیره عکس */
+/* إشعار النجاح */
 .save-success{
   position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;background:#00000055;
+  align-items:center;justify-content:center;background:#00000066; backdrop-filter:blur(4px);
   opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease;
 }
 .save-success.show{opacity:1;visibility:visible}
 .save-success-check{
-  width:118px;height:118px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;background:#20a94b;color:#fff;border:7px solid #fff;
-  box-shadow:0 10px 30px #0005;font-size:82px;font-weight:1000;
-  line-height:1;transform:scale(.65);transition:transform .25s cubic-bezier(.2,1.5,.4,1);
+  width:130px;height:130px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;background:#20a94b;color:#fff;border:8px solid #fff;
+  box-shadow:0 12px 35px #0006;font-size:90px;font-weight:1000;
+  line-height:1;transform:scale(.5);transition:transform .3s cubic-bezier(.2,1.5,.4,1);
 }
 .save-success.show .save-success-check{transform:scale(1)}
 .save-success-text{
-  margin-top:16px;padding:10px 18px;border-radius:14px;background:#fff;color:#16885b;
-  font-size:20px;font-weight:1000;box-shadow:0 6px 20px #0003;
+  margin-top:20px;padding:12px 24px;border-radius:16px;background:#fff;color:#16885b;
+  font-size:24px;font-weight:1000;box-shadow:0 8px 25px #0004;
 }
 @media(max-width:620px){
-  body{padding:7px}.top{border-radius:20px}h1{font-size:29px}.invoice-code{font-size:18px}
-  .form-grid{grid-template-columns:1fr 1fr}
-  .form-grid .wide{grid-column:1/-1}
-  .panel{padding:9px}
-  .btn{padding:10px 9px}
+  body{padding:8px}.top{border-radius:20px}h1{font-size:34px}.invoice-code{font-size:20px}
+  .form-grid{grid-template-columns:1fr 1fr} .form-grid .wide{grid-column:1/-1}
+  .panel{padding:12px} .actions{flex-wrap:wrap;} .actions .btn{flex: 1 1 40%;}
 }
 </style>
 </head>
 <body>
 <div class="app">
   <div class="top">
-    <div class="page-date" id="pageDate"></div>
+    <!-- أزرار التقويم والتاريخ -->
+    <div class="date-container">
+      <div class="date-btn-wrapper">
+        <span class="calendar-icon">📅</span>
+        <input type="date" id="dateInput" title="تغییر تاریخ">
+      </div>
+      <div class="page-date" id="pageDate"></div>
+    </div>
     <h1>فاکتور</h1>
     <div class="invoice-code" id="invoiceCode"></div>
   </div>
@@ -193,7 +205,6 @@ tr:nth-child(even) td{background:#fff3fa}
 
 <div class="invoice-card"><div id="capture"></div></div>
 
-<!-- پیام موفقیت ذخیره عکس -->
 <div id="saveSuccess" class="save-success" aria-hidden="true">
   <div class="save-success-check">✓</div>
   <div class="save-success-text">عکس فاکتور با موفقیت ذخیره شد</div>
@@ -204,7 +215,7 @@ const $=id=>document.getElementById(id);
 let items=[];
 let editIndex=-1;
 let invoiceCode=generateInvoiceCode();
-const today=new Date();
+let invoiceDate=new Date(); // متغیر مستقل برای تاریخ فاکتور
 
 function generateInvoiceCode(){
   let code=localStorage.getItem('currentInvoiceCode');
@@ -218,22 +229,32 @@ function nextInvoiceCode(){
   invoiceCode=code;
 }
 
-const faDateText=today.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
-$('pageDate').textContent=faDateText;
+function updateDateDisplay() {
+  const faDateText = invoiceDate.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
+  $('pageDate').textContent = faDateText;
+}
+
+$('dateInput').addEventListener('change', (e) => {
+  if(e.target.value) {
+    invoiceDate = new Date(e.target.value);
+    updateDateDisplay();
+    saveDraft();
+  }
+});
+
 const fmt=n=>new Intl.NumberFormat('fa-IR').format(Math.round(Number(n)||0));
 const parseMoney=v=>Math.max(0,Number(String(v??'').replace(/[^0-9.]/g,''))||0);
 const clean=n=>Math.max(0,Number(n)||0);
 
 function render(){
   $('invoiceCode').textContent='کود: '+fmt(invoiceCode);
-  const tb=$('rows'); tb.innerHTML='';
-  $('empty').style.display=items.length?'none':'block';
+  const tb=$('rows'); tb.innerHTML='';$('empty').style.display=items.length?'none':'block';
   items.forEach((x,i)=>{
     const tr=document.createElement('tr');
     tr.innerHTML=`
       <td class="num">${fmt(i+1)}</td>
       <td>${esc(x.name)}</td>
-      <td>${fmt(x.qty)}</td>
+      <td class="num">${fmt(x.qty)}</td>
       <td>${esc(x.unit)}</td>
       <td class="money">${fmt(x.price)}</td>
       <td class="money">${fmt(clean(x.qty)*clean(x.price))}</td>
@@ -248,12 +269,8 @@ function esc(s){
   return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 }
 function resetForm(){
-  $('name').value='';
-  $('qty').value='';
-  $('price').value='';
-  $('unit').value='';
-  editIndex=-1;
-  $('addBtn').textContent='＋ افزودن جنس به فاکتور';
+  $('name').value='';$('qty').value=''; $('price').value='';$('unit').value='';
+  editIndex=-1; $('addBtn').textContent='＋ افزودن جنس به فاکتور';
 }
 $('addBtn').onclick=()=>{
   try{
@@ -261,35 +278,33 @@ $('addBtn').onclick=()=>{
     const qty=clean($('qty').value);
     const unit=$('unit').value;
     const price=parseMoney($('price').value);
-    if(!name){
-      alert('لطفاً جنس را وارد کنید.');
-      $('name').focus();
-      return;
-    }
+    if(!name){ alert('لطفاً جنس را وارد کنید.'); $('name').focus(); return; }
     const obj={name,qty,unit,price};
     if(editIndex>=0) items[editIndex]=obj; else items.push(obj);
-    resetForm();
-    render();
-    saveDraft();
+    resetForm(); render(); saveDraft();
   }catch(err){
-    console.error(err);
-    alert('ثبت جنس انجام نشد. لطفاً دوباره تلاش کنید.');
+    console.error(err); alert('ثبت جنس انجام نشد. لطفاً دوباره تلاش کنید.');
   }
 };
 window.editItem=i=>{
   const x=items[i]; $('name').value=x.name;$('qty').value=x.qty;$('unit').value=x.unit;$('price').value=fmt(x.price);
   editIndex=i;$('addBtn').textContent='✓ ذخیره ویرایش';window.scrollTo({top:0,behavior:'smooth'});
 };
-$('notes').addEventListener('input',saveDraft);
-$('price').addEventListener('input',e=>{const raw=e.target.value.replace(/[^0-9]/g,'');e.target.value=raw?Number(raw).toLocaleString('en-US'):'';});
+$('notes').addEventListener('input',saveDraft);$('price').addEventListener('input',e=>{const raw=e.target.value.replace(/[^0-9]/g,'');e.target.value=raw?Number(raw).toLocaleString('en-US'):'';});
 window.deleteItem=i=>{
   if(confirm('این جنس از فاکتور حذف شود؟')){items.splice(i,1);render();saveDraft();}
 };
-function saveDraft(){localStorage.setItem('invoiceItems',JSON.stringify({items,notes:$('notes').value,invoiceCode}));}
+
+function saveDraft(){
+  localStorage.setItem('invoiceItems',JSON.stringify({
+    items, notes:$('notes').value, invoiceCode, invoiceDate: invoiceDate.toISOString()
+  }));
+}
+
 function loadDraft(){
   try{
     const saved=JSON.parse(localStorage.getItem('invoiceItems')||'[]');
-    if(Array.isArray(saved)){items=saved;$('notes').value='';}
+    if(Array.isArray(saved)){ items=saved; $('notes').value=''; }
     else{
       items=Array.isArray(saved.items)?saved.items:[];
       $('notes').value=saved.notes||'';
@@ -297,33 +312,38 @@ function loadDraft(){
         invoiceCode=String(saved.invoiceCode);
         localStorage.setItem('currentInvoiceCode',invoiceCode);
       }
+      if(saved.invoiceDate) invoiceDate = new Date(saved.invoiceDate);
     }
   }catch{items=[];$('notes').value='';}
+  updateDateDisplay();
   render();
 }
+
+// دکمه پاک کردن حالا توضیحات را هم پاک می کند
 $('clearBtn').onclick=()=>{
-  if(items.length && confirm('همه جنس‌های این فاکتور پاک شود؟')){
-    items=[]; resetForm(); nextInvoiceCode(); saveDraft(); render();
+  if((items.length || $('notes').value) && confirm('همه جنس‌های این فاکتور و توضیحات پاک شود؟')){
+    items=[]; $('notes').value=''; resetForm(); nextInvoiceCode(); saveDraft(); render();
   }
 };
+
 $('saveBtn').onclick=()=>{
   if(!items.length){alert('اول حداقل یک جنس اضافه کنید.');return}
   localStorage.setItem('lastInvoice',JSON.stringify({
-    invoiceCode,
-    items,
-    notes:$('notes').value,
+    invoiceCode, items, notes:$('notes').value,
     total:items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0),
     date:new Date().toISOString(),
-    shamsiDate:today.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'})
+    shamsiDate:invoiceDate.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'})
   }));
   alert('فاکتور با موفقیت ثبت شد ✓');
 };
+
 function buildCapture(){
   const total=items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0);
   const notesRaw=$('notes').value.trim();
-  // تیک موفقیت داخل خود برگه، دقیقاً در انتهای توضیحات
   const notes=notesRaw ? notesRaw.replace(/\n/g,'<br>') + '<span class="notes-success-sticker">✓</span>' : '<span class="notes-success-sticker">✓</span>';
-  const footerDate=new Date().toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
+  // استفاده از تاریخ انتخاب شده
+  const footerDate=invoiceDate.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
+  
   let html=`<div class="capture-title">فاکتور</div>
   <div class="capture-sub">کود: ${fmt(invoiceCode)}</div>
   <table class="capture-table"><thead><tr><th style="background:#7040c7">شماره</th><th style="background:#ed1670">جنس</th><th style="background:#20a94b">مقدار</th><th style="background:#1769e0">واحد</th><th style="background:#ff8a00">قیمت واحد (تومان)</th><th style="background:#a21caf">جمع مبلغ (تومان)</th></tr></thead><tbody>`;
@@ -339,17 +359,49 @@ function buildCapture(){
   </div>`;
   $('capture').innerHTML=html;
 }
+
+// تولید نغمة النجاح (آلارم) 
+function playSuccessSound() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    
+    const playTone = (freq, startTime, duration) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, startTime);
+      gain.gain.setValueAtTime(0.5, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    };
+    
+    const now = ctx.currentTime;
+    playTone(523.25, now, 0.15); // نت اول
+    playTone(659.25, now + 0.15, 0.3); // نت دوم
+  } catch (err) {
+    console.log("Audio API Error", err);
+  }
+}
+
 $('imageBtn').onclick=async()=>{
   if(!items.length){alert('اول جنس‌ها را اضافه و سپس ثبت کنید.');return}
   try{
     buildCapture();
     const canvas=await html2canvas($('capture'),{scale:2.5,useCORS:true,backgroundColor:'#fff',logging:false});
     const a=document.createElement('a');
-    a.download='فاکتور-'+new Date().toLocaleDateString('fa-IR').replaceAll('/','-')+'.png';
+    a.download='فاکتور-'+invoiceDate.toLocaleDateString('fa-IR').replaceAll('/','-')+'.png';
     a.href=canvas.toDataURL('image/png',1);
     a.click();
 
-    // بعد از انجام ذخیره، استیکر تیک بزرگ نمایش داده می‌شود.
+    // تشغيل المنبه الصوتي (آلارم موفقيت)
+    playSuccessSound();
+
+    // إظهار الإشعار المرئي
     const success=$('saveSuccess');
     success.classList.add('show');
     success.setAttribute('aria-hidden','false');
