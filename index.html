@@ -25,7 +25,9 @@ button,input,select{font:inherit}
 }
 .top:before,.top:after{content:"🌸";position:absolute;font-size:45px;opacity:.75;top:8px}
 .top:before{left:10px}.top:after{right:10px}
-h1{text-align:center;color:#d92323;font-size:42px;margin:3px 0 4px;text-shadow:2px 2px #ffd8d8;font-weight:1000}
+h1{text-align:center;color:#d92323;font-size:42px;margin:3px 0 2px;text-shadow:2px 2px #ffd8d8;font-weight:1000}
+.invoice-code{text-align:center;color:#7040c7;font-size:22px;font-weight:1000;margin:0 0 3px}
+
 .page-date{text-align:center;color:#18213a;font-size:28px;font-weight:1000;direction:ltr;margin:0 0 2px}
 .notes-box{margin-top:12px}
 textarea{width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:10px 8px;background:#fff;outline:none;color:#17213a;resize:vertical;font-family:inherit}
@@ -97,7 +99,7 @@ tr:nth-child(even) td{background:#fff3fa}
 .capture-table td{font-size:19px;padding:10px 6px}
 .capture-total{margin-top:14px;border:5px solid #e32b22;border-radius:22px;background:#ffd12b;text-align:center;padding:16px;font-size:28px;font-weight:1000;color:#9d0808}
 @media(max-width:620px){
-  body{padding:7px}.top{border-radius:20px}h1{font-size:29px}
+  body{padding:7px}.top{border-radius:20px}h1{font-size:29px}.invoice-code{font-size:18px}
   .form-grid{grid-template-columns:1fr 1fr}
   .form-grid .wide{grid-column:1/-1}
   .panel{padding:9px}
@@ -110,6 +112,7 @@ tr:nth-child(even) td{background:#fff3fa}
   <div class="top">
     <div class="page-date" id="pageDate"></div>
     <h1>فاکتور</h1>
+    <div class="invoice-code" id="invoiceCode"></div>
   </div>
 
   <div class="panel">
@@ -125,9 +128,7 @@ tr:nth-child(even) td{background:#fff3fa}
       <div>
         <label>واحد</label>
         <select id="unit">
-          <option value="" selected></option><option>عدد</option><option>کیلو</option><option>نیم کیلو</option>
-          <option>شانه</option><option>پاکت</option><option>بسته</option>
-          <option>لیتر</option><option>متر</option><option>دست</option>
+          <option value="" selected></option><option>کیلو</option><option>پاکت</option><option>بسته</option><option>عدد</option><option>شانه</option>
         </select>
       </div>
       <div>
@@ -169,14 +170,29 @@ tr:nth-child(even) td{background:#fff3fa}
 const $=id=>document.getElementById(id);
 let items=[];
 let editIndex=-1;
+let invoiceCode=generateInvoiceCode();
 const today=new Date();
-const enDateText=today.toLocaleDateString('en-US-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
-$('pageDate').textContent=enDateText;
+
+function generateInvoiceCode(){
+  let code=localStorage.getItem('currentInvoiceCode');
+  if(!/^\\d{3}$/.test(String(code||''))) code=String(Math.floor(100+Math.random()*900));
+  localStorage.setItem('currentInvoiceCode',code);
+  return code;
+}
+function nextInvoiceCode(){
+  const code=String(Math.floor(100+Math.random()*900));
+  localStorage.setItem('currentInvoiceCode',code);
+  invoiceCode=code;
+}
+
+const faDateText=today.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
+$('pageDate').textContent=faDateText;
 const fmt=n=>new Intl.NumberFormat('fa-IR').format(Math.round(Number(n)||0));
 const parseMoney=v=>Math.max(0,Number(String(v??'').replace(/[^0-9.]/g,''))||0);
 const clean=n=>Math.max(0,Number(n)||0);
 
 function render(){
+  $('invoiceCode').textContent='کود: '+fmt(invoiceCode);
   const tb=$('rows'); tb.innerHTML='';
   $('empty').style.display=items.length?'none':'block';
   items.forEach((x,i)=>{
@@ -236,28 +252,45 @@ $('price').addEventListener('input',e=>{const raw=e.target.value.replace(/[^0-9]
 window.deleteItem=i=>{
   if(confirm('این جنس از فاکتور حذف شود؟')){items.splice(i,1);render();saveDraft();}
 };
-function saveDraft(){localStorage.setItem('invoiceItems',JSON.stringify({items,notes:$('notes').value}));}
+function saveDraft(){localStorage.setItem('invoiceItems',JSON.stringify({items,notes:$('notes').value,invoiceCode}));}
 function loadDraft(){
   try{
     const saved=JSON.parse(localStorage.getItem('invoiceItems')||'[]');
     if(Array.isArray(saved)){items=saved;$('notes').value='';}
-    else{items=Array.isArray(saved.items)?saved.items:[];$('notes').value=saved.notes||'';}
+    else{
+      items=Array.isArray(saved.items)?saved.items:[];
+      $('notes').value=saved.notes||'';
+      if(/^\\d{3}$/.test(String(saved.invoiceCode||''))){
+        invoiceCode=String(saved.invoiceCode);
+        localStorage.setItem('currentInvoiceCode',invoiceCode);
+      }
+    }
   }catch{items=[];$('notes').value='';}
   render();
 }
 $('clearBtn').onclick=()=>{
-  if(items.length && confirm('همه جنس‌های این فاکتور پاک شود؟')){items=[];resetForm();saveDraft();render();}
+  if(items.length && confirm('همه جنس‌های این فاکتور پاک شود؟')){
+    items=[]; resetForm(); nextInvoiceCode(); saveDraft(); render();
+  }
 };
 $('saveBtn').onclick=()=>{
   if(!items.length){alert('اول حداقل یک جنس اضافه کنید.');return}
-  localStorage.setItem('lastInvoice',JSON.stringify({items,notes:$('notes').value,total:items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0),date:new Date().toISOString(),shamsiDate:today.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'})}));
+  localStorage.setItem('lastInvoice',JSON.stringify({
+    invoiceCode,
+    items,
+    notes:$('notes').value,
+    total:items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0),
+    date:new Date().toISOString(),
+    shamsiDate:today.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'})
+  }));
   alert('فاکتور با موفقیت ثبت شد ✓');
 };
 function buildCapture(){
   const total=items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0);
   const notes=esc($('notes').value.trim()) || '—';
-  const footerDate=new Date().toLocaleDateString('en-US-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
+  const footerDate=new Date().toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
   let html=`<div class="capture-title">فاکتور</div>
+  <div class="capture-sub">کود: ${fmt(invoiceCode)}</div>
   <table class="capture-table"><thead><tr><th style="background:#7040c7">شماره</th><th style="background:#ed1670">جنس</th><th style="background:#20a94b">مقدار</th><th style="background:#1769e0">واحد</th><th style="background:#ff8a00">قیمت واحد (تومان)</th><th style="background:#a21caf">جمع مبلغ (تومان)</th></tr></thead><tbody>`;
   items.forEach((x,i)=>html+=`<tr><td>${fmt(i+1)}</td><td>${esc(x.name)}</td><td>${fmt(x.qty)}</td><td>${esc(x.unit)}</td><td>${fmt(x.price)}</td><td>${fmt(clean(x.qty)*clean(x.price))}</td></tr>`);
   html+=`</tbody></table><div class="capture-total">جمع مبلغ کل: ${fmt(total)} تومان</div>
