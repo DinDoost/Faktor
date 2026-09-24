@@ -98,6 +98,33 @@ tr:nth-child(even) td{background:#fff3fa}
 .capture-table th{font-size:20px;padding:12px 7px}
 .capture-table td{font-size:19px;padding:10px 6px}
 .capture-total{margin-top:14px;border:5px solid #e32b22;border-radius:22px;background:#ffd12b;text-align:center;padding:16px;font-size:28px;font-weight:1000;color:#9d0808}
+
+/* تیک سبز بزرگ داخل برگه، در انتهای توضیحات */
+.notes-success-sticker{
+  display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;
+  width:42px;height:42px;margin-right:12px;border-radius:50%;
+  background:#20a94b;color:#fff;border:3px solid #fff;
+  box-shadow:0 3px 8px #0003;font-size:29px;font-weight:1000;line-height:1;
+}
+
+/* استیکر موفقیت بعد از ذخیره عکس */
+.save-success{
+  position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;background:#00000055;
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease;
+}
+.save-success.show{opacity:1;visibility:visible}
+.save-success-check{
+  width:118px;height:118px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;background:#20a94b;color:#fff;border:7px solid #fff;
+  box-shadow:0 10px 30px #0005;font-size:82px;font-weight:1000;
+  line-height:1;transform:scale(.65);transition:transform .25s cubic-bezier(.2,1.5,.4,1);
+}
+.save-success.show .save-success-check{transform:scale(1)}
+.save-success-text{
+  margin-top:16px;padding:10px 18px;border-radius:14px;background:#fff;color:#16885b;
+  font-size:20px;font-weight:1000;box-shadow:0 6px 20px #0003;
+}
 @media(max-width:620px){
   body{padding:7px}.top{border-radius:20px}h1{font-size:29px}.invoice-code{font-size:18px}
   .form-grid{grid-template-columns:1fr 1fr}
@@ -165,6 +192,12 @@ tr:nth-child(even) td{background:#fff3fa}
 </div>
 
 <div class="invoice-card"><div id="capture"></div></div>
+
+<!-- پیام موفقیت ذخیره عکس -->
+<div id="saveSuccess" class="save-success" aria-hidden="true">
+  <div class="save-success-check">✓</div>
+  <div class="save-success-text">عکس فاکتور با موفقیت ذخیره شد</div>
+</div>
 
 <script>
 const $=id=>document.getElementById(id);
@@ -287,7 +320,9 @@ $('saveBtn').onclick=()=>{
 };
 function buildCapture(){
   const total=items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0);
-  const notes=esc($('notes').value.trim()) || '—';
+  const notesRaw=$('notes').value.trim();
+  // تیک موفقیت داخل خود برگه، دقیقاً در انتهای توضیحات
+  const notes=notesRaw ? notesRaw.replace(/\n/g,'<br>') + '<span class="notes-success-sticker">✓</span>' : '<span class="notes-success-sticker">✓</span>';
   const footerDate=new Date().toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
   let html=`<div class="capture-title">فاکتور</div>
   <div class="capture-sub">کود: ${fmt(invoiceCode)}</div>
@@ -297,7 +332,7 @@ function buildCapture(){
   <div class="capture-footer">
     <table class="capture-footer-table">
       <tr>
-        <td class="footer-notes"><span class="footer-label">توضیحات</span>${notes.replace(/\n/g,'<br>')}</td>
+        <td class="footer-notes"><span class="footer-label">توضیحات</span>${notes}</td>
         <td class="footer-date"><span class="footer-label">تاریخ ثبت فاکتور</span><span class="footer-date-value">${footerDate}</span></td>
       </tr>
     </table>
@@ -306,12 +341,26 @@ function buildCapture(){
 }
 $('imageBtn').onclick=async()=>{
   if(!items.length){alert('اول جنس‌ها را اضافه و سپس ثبت کنید.');return}
-  buildCapture();
-  const canvas=await html2canvas($('capture'),{scale:2.5,useCORS:true,backgroundColor:'#fff',logging:false});
-  const a=document.createElement('a');
-  a.download='فاکتور-'+new Date().toLocaleDateString('fa-IR').replaceAll('/','-')+'.png';
-  a.href=canvas.toDataURL('image/png',1);
-  a.click();
+  try{
+    buildCapture();
+    const canvas=await html2canvas($('capture'),{scale:2.5,useCORS:true,backgroundColor:'#fff',logging:false});
+    const a=document.createElement('a');
+    a.download='فاکتور-'+new Date().toLocaleDateString('fa-IR').replaceAll('/','-')+'.png';
+    a.href=canvas.toDataURL('image/png',1);
+    a.click();
+
+    // بعد از انجام ذخیره، استیکر تیک بزرگ نمایش داده می‌شود.
+    const success=$('saveSuccess');
+    success.classList.add('show');
+    success.setAttribute('aria-hidden','false');
+    setTimeout(()=>{
+      success.classList.remove('show');
+      success.setAttribute('aria-hidden','true');
+    },1800);
+  }catch(err){
+    console.error(err);
+    alert('ذخیره عکس انجام نشد. لطفاً دوباره تلاش کنید.');
+  }
 };
 loadDraft();
 </script>
