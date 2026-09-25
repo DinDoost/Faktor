@@ -351,8 +351,31 @@ function renderPersianCalendar(){
     box.appendChild(b);
   }
 }
-function gregorianToJalali(gy,gm,gd){let gdm=[0,31,59,90,120,151,181,212,243,273,304,334],jy=gy>1600?979:-1,gy2=gy>1600?gy-1600:gy-621,days=365*gy2+Math.floor((gy2+3)/4)-Math.floor((gy2+99)/100)+Math.floor((gy2+399)/400)-80+gd+gdm[gm-1];if(gm>2&&((gy%4===0&&gy%100!==0)||gy%400===0))days++;jy+=33*Math.floor(days/12053);days%=12053;jy+=4*Math.floor(days/1461);days%=1461;if(days>365){jy+=Math.floor((days-1)/365);days=(days-1)%365}let jm=days<186?1+Math.floor(days/31):7+Math.floor((days-186)/30),jd=1+(days<186?days%31:(days-186)%30);return[jy,jm,jd]}
-function jalaliToGregorian(jy,jm,jd){jy+=1597;let d=-355668+365*jy+Math.floor(jy/33)*8+Math.floor((jy%33+3)/4)+jd+(jm<7?(jm-1)*31:(jm-1)*30+6),gy=400*Math.floor(d/146097);d%=146097;if(d>36524){gy+=100*Math.floor(--d/36524);d%=36524;if(d>=365)d++}gy+=4*Math.floor(d/1461);d%=1461;if(d>365){gy+=Math.floor((d-1)/365);d=(d-1)%365}let gd=d+1,md=[0,31,((gy%4===0&&gy%100!==0)||gy%400===0)?29:28,31,30,31,30,31,31,30,31,30,31],gm=0;while(gd>md[gm]){gd-=md[gm];gm++}return new Date(gy,gm-1,gd,12,0,0,0)}
+function gregorianToJalali(gy,gm,gd){
+  // تبدیل دقیق بر اساس تقویم شمسی پشتیبانی‌شده توسط مرورگر/گوشی
+  const date=new Date(gy,gm-1,gd,12,0,0,0);
+  const parts=new Intl.DateTimeFormat('en-US-u-ca-persian',{
+    year:'numeric',month:'numeric',day:'numeric'
+  }).formatToParts(date);
+  const get=t=>Number(parts.find(x=>x.type===t)?.value||0);
+  return [get('year'),get('month'),get('day')];
+}
+
+function jalaliToGregorian(jy,jm,jd){
+  // تبدیل معکوس با جست‌وجوی روز دقیق؛ از پرش چندساله جلوگیری می‌کند.
+  const target=[Number(jy),Number(jm),Number(jd)];
+  const baseYear=target[0]+621;
+  const start=new Date(baseYear,2,1,12,0,0,0);
+  for(let offset=-35;offset<=400;offset++){
+    const d=new Date(start);
+    d.setDate(start.getDate()+offset);
+    const j=gregorianToJalali(d.getFullYear(),d.getMonth()+1,d.getDate());
+    if(j[0]===target[0] && j[1]===target[1] && j[2]===target[2]){
+      return d;
+    }
+  }
+  throw new Error('تبدیل تاریخ شمسی انجام نشد');
+}
 
 const fmt=n=>new Intl.NumberFormat('fa-IR').format(Math.round(Number(n)||0));
 const parseMoney=v=>Math.max(0,Number(String(v??'').replace(/[^0-9.]/g,''))||0);
