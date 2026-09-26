@@ -9,14 +9,15 @@
 *{box-sizing:border-box}
 :root{
   --blue:#1769e0; --pink:#ed1670; --green:#20a94b; --orange:#ff8a00;
-  --purple:#7040c7; --red:#e22b25; --ink:#18213a; --cream:#fffdf6;
+  --purple:#7040c7; --red:#e22b25; --ink:#111827; --cream:#fffdf6;
 }
 body{
   margin:0; font-family:Tahoma,"Vazirmatn","Noto Naskh Arabic",sans-serif;
   background:linear-gradient(135deg,#eef6ff,#fff4fb 45%,#f4fff4);
-  color:var(--ink); padding:12px;
+  color:var(--ink); padding:12px; font-weight:800;
+  overscroll-behavior-y: contain;
 }
-button,input,select{font:inherit}
+button,input,select{font:inherit; font-weight:900;}
 .app{max-width:760px;margin:auto}
 .top{
   background:linear-gradient(135deg,#fff,#fff9ef);
@@ -26,8 +27,12 @@ button,input,select{font:inherit}
 .top:before,.top:after{content:"🌸";position:absolute;font-size:45px;opacity:.75;top:8px}
 .top:before{left:10px}.top:after{right:10px}
 
-/* تقويم التاريخ */
-.code-currency-row{display:flex;align-items:center;justify-content:center;position:relative;z-index:5}.code-currency-row .invoice-code{margin:0}.code-currency-row .currency-box{position:absolute;left:0;top:50%;transform:translateY(-50%);padding:3px 5px}.currency-box{display:flex;align-items:center;gap:5px;background:#fff;border:2px solid #c8d8f0;border-radius:10px;padding:5px 7px;box-shadow:0 4px 8px #0001}.currency-box label{font-size:11px;font-weight:900;color:#4a5670;margin:0}.currency-box select{width:auto;min-width:78px;border:0;padding:4px 6px;background:#eef5ff;border-radius:7px;font-size:13px;font-weight:900;outline:none;color:#17213a}.date-container { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 6px; position: relative; z-index: 5; }
+.code-currency-row{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5; margin-top: 10px;}
+.code-currency-row .invoice-code{margin:0}
+.currency-box-inline{display:flex;align-items:center;gap:6px;background:#eef5ff;border:2px solid #c8d8f0;border-radius:12px;padding:4px 10px;box-shadow:0 4px 8px #0001}
+.currency-box-inline select{width:auto;min-width:90px;border:0;padding:6px 8px;background:transparent;border-radius:7px;font-size:15px;font-weight:1000;outline:none;color:#111827; cursor:pointer;}
+
+.date-container { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 6px; position: relative; z-index: 5; }
 .date-btn-wrapper {
   position: relative; width: 40px; height: 40px; background: #eef5ff; border: 2px solid #c8d8f0;
   border-radius: 12px; display: flex; align-items: center; justify-content: center;
@@ -36,78 +41,76 @@ button,input,select{font:inherit}
 .date-btn-wrapper:active { transform: scale(0.92); }
 .calendar-icon { font-size: 22px; pointer-events: none; }
 #dateInput { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
-.page-date { color:#18213a; font-size:26px; font-weight:1000; direction:ltr; margin:0; }
+.page-date { color:#111827; font-size:26px; font-weight:1000; direction:ltr; margin:0; }
 
 h1{text-align:center;color:#d92323;font-size:44px;margin:5px 0 2px;text-shadow:2px 2px #ffd8d8;font-weight:1000; position:relative; z-index:5;}
-.invoice-code{text-align:center;color:#7040c7;font-size:24px;font-weight:1000;margin:0 0 3px; position:relative; z-index:5;}
+.invoice-code{text-align:center;color:#7040c7;font-size:24px;font-weight:1000; position:relative; z-index:5;}
 
 .notes-box{margin-top:12px}
-textarea{width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:12px 10px;background:#fff;outline:none;color:#17213a;resize:vertical;font-family:inherit;font-size:16px; font-weight:700;}
+textarea{width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:12px 10px;background:#fff;outline:none;color:#111827;resize:vertical;font-family:inherit;font-size:17px; font-weight:900;}
 textarea:focus{border-color:#4d8df7;box-shadow:0 0 0 3px #4d8df71b}
 
-/* جدول التطبيق */
 .panel{ background:#ffffffec;border:2px solid #d8e5ff;border-radius:20px; padding:16px;box-shadow:0 6px 20px #00000012;margin-bottom:12px }
 .form-grid{display:grid;grid-template-columns:1.4fr .8fr .75fr 1fr;gap:10px}
-label{font-size:13px;font-weight:900;color:#4a5670;margin:0 0 6px;display:block}
-input,select{ width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:12px 10px; background:#fff;outline:none;color:#17213a; font-size:16px; font-weight:700; }
+label{font-size:14px;font-weight:1000;color:#1f2937;margin:0 0 6px;display:block}
+input,select{ width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:12px 10px; background:#fff;outline:none;color:#111827; font-size:17px; font-weight:900; }
 input:focus,select:focus{border-color:#4d8df7;box-shadow:0 0 0 3px #4d8df71b}
 
-.btn{ border:0;border-radius:13px;padding:12px 14px;font-weight:900;font-size:16px;cursor:pointer; box-shadow:0 4px 10px #00000018; transition:.12s transform,.12s filter }
+.btn{ border:0;border-radius:13px;padding:12px 14px;font-weight:1000;font-size:17px;cursor:pointer; box-shadow:0 4px 10px #00000018; transition:.12s transform,.12s filter }
 .btn:active{transform:scale(.95)}
-.add{background:linear-gradient(135deg,#18a34a,#07883b);color:white;width:100%;margin-top:12px; font-size:18px;}
+.add{background:linear-gradient(135deg,#18a34a,#07883b);color:white;width:100%;margin-top:12px; font-size:19px;}
 .save{background:linear-gradient(135deg,#e92828,#ba1111);color:white;flex:1}
 .image{background:linear-gradient(135deg,#1769e0,#0b4fb7);color:white;flex:1}
-.clear{background:#f2f5fa;color:#29334a; border:2px solid #dbe5f4;}
+.clear{background:#f2f5fa;color:#111827; border:2px solid #dbe5f4;}
 .actions{display:flex;gap:10px;margin-top:14px}
-.count{font-weight:900;color:#1a5dc6;font-size:16px; margin-bottom:10px;}
+.count{font-weight:1000;color:#1a5dc6;font-size:17px; margin-bottom:10px;}
 
 .table-wrap{overflow-x:auto;border-radius:15px;border:1px solid #d8e1ee}
 table{width:100%;border-collapse:separate;border-spacing:0;min-width:650px;background:white}
-th,td{padding:12px 7px;text-align:center;border-left:1px solid #fff;border-bottom:1px solid #fff;font-weight:800; font-size:16px;}
-th{color:#fff;font-size:15px}
+th,td{padding:12px 7px;text-align:center;border-left:1px solid #fff;border-bottom:1px solid #fff;font-weight:900; font-size:17px; color:#111827;}
+th{color:#fff;font-size:16px; font-weight:1000;}
 th:nth-child(1){background:var(--purple)} th:nth-child(2){background:var(--pink)}
 th:nth-child(3){background:var(--green)} th:nth-child(4){background:var(--blue)}
 th:nth-child(5){background:var(--orange)} th:nth-child(6){background:#a21caf}
 td{background:#f8fbff}
 tr:nth-child(even) td{background:#fff3fa}
 
-.num{font-weight:1000; font-size:18px; color:var(--purple);}
-.money{direction:ltr;unicode-bidi:plaintext; font-weight:1000; font-size:18px; color:#0b4fb7;}
-.edit{background:#1769e0;color:white;padding:8px 10px;border-radius:9px;border:0; cursor:pointer;}
-.del{background:#ef3340;color:white;padding:8px 10px;border-radius:9px;border:0;margin-right:6px; cursor:pointer;}
+.num{font-weight:1000; font-size:19px; color:var(--purple);}
+.money{direction:ltr;unicode-bidi:plaintext; font-weight:1000; font-size:19px; color:#0b4fb7;}
+.edit{background:#1769e0;color:white;padding:8px 10px;border-radius:9px;border:0; cursor:pointer; font-weight:1000;}
+.del{background:#ef3340;color:white;padding:8px 10px;border-radius:9px;border:0;margin-right:6px; cursor:pointer; font-weight:1000;}
 
 .total{
   margin-top:16px;border:4px solid #e52c20;border-radius:20px;
   background:linear-gradient(135deg,#fff36b,#ffc928);
   padding:18px;text-align:center;box-shadow:0 6px 20px #0002
 }
-.total small{display:block;color:#8e1710;font-weight:900;font-size:18px}
-.total strong{display:block;color:#a40000;font-size:36px; font-weight:1000; margin-top:5px}
-.notice{text-align:center;color:#60708d;font-size:13px;margin-top:10px; font-weight:700;}
-.empty{text-align:center;padding:30px;color:#77849a;font-weight:700; font-size:16px;}
+.total small{display:block;color:#8e1710;font-weight:1000;font-size:19px}
+.total strong{display:block;color:#a40000;font-size:38px; font-weight:1000; margin-top:5px}
+.notice{text-align:center;color:#374151;font-size:14px;margin-top:10px; font-weight:900;}
+.empty{text-align:center;padding:30px;color:#4b5563;font-weight:900; font-size:17px;}
 
-/* الصورة المصدرة (الفاتورة) - أرقام كبيرة */
 .invoice-card{ position:fixed;left:-10000px;top:0;width:900px;background:#fff; }
 #capture{ width:900px;padding:26px;background:linear-gradient(135deg,#fffdf6,#f7fbff); border:6px solid #16885b;border-radius:30px;overflow:hidden; }
 .capture-title{font-size:52px;text-align:center;color:#d92323;font-weight:1000;margin:3px 0 5px}
-.capture-sub{text-align:center;font-size:26px;color:#163f9c;font-weight:900;margin-bottom:20px}
+.capture-sub{text-align:center;font-size:26px;color:#163f9c;font-weight:1000;margin-bottom:20px}
 .capture-table{width:96%;margin:0 auto;border-collapse:separate;border-spacing:4px;table-layout:fixed}
 .capture-table th{font-size:22px;padding:14px 8px;font-weight:1000}
-.capture-table td{font-size:28px;padding:14px 8px;font-weight:1000}
+.capture-table td{font-size:28px;padding:14px 8px;font-weight:1000; color:#111827;}
 .capture-table td:nth-child(2){font-size:30px;font-weight:1000}
 .capture-table td:nth-child(1),.capture-table td:nth-child(3),.capture-table td:nth-child(5),.capture-table td:nth-child(6){font-size:29px;font-weight:1000}
 
-.capture-total{margin-top:20px;border:5px solid #e32b22;border-radius:22px;background:#ffd12b;text-align:center;padding:22px;font-size:34px;font-weight:1000;color:#9d0808}
+.capture-total{margin-top:20px;border:5px solid #e32b22;border-radius:22px;background:#ffd12b;text-align:center;padding:22px;font-size:36px;font-weight:1000;color:#9d0808}
 
 .capture-footer{margin-top:22px;border:4px solid #16885b;border-radius:20px;overflow:hidden;background:#fff;direction:rtl}
 .capture-footer-table{width:100%;border-collapse:collapse;table-layout:fixed}
-.capture-footer-table td{border:1px solid #d8e1ee;padding:18px;vertical-align:top;font-size:22px;line-height:1.8}
-.capture-footer-table .footer-label{display:block;font-size:18px;font-weight:1000;margin-bottom:8px}
+.capture-footer-table td{border:1px solid #d8e1ee;padding:18px;vertical-align:top;font-size:24px;line-height:1.8; font-weight:1000; color:#111827;}
+.capture-footer-table .footer-label{display:block;font-size:20px;font-weight:1000;margin-bottom:8px}
 .capture-footer-table .footer-notes{width:60%;text-align:right;background:#fbfdff}
 .capture-footer-table .footer-date{width:40%;text-align:left;direction:ltr;background:#f8fff9;font-weight:1000}
 .capture-footer-table .footer-date .footer-label{text-align:right;direction:rtl;color:#16885b}
 .capture-footer-table .footer-notes .footer-label{color:#1769e0}
-.capture-footer-table .footer-date-value{font-size:30px;white-space:nowrap; color:#000;}
+.capture-footer-table .footer-date-value{font-size:32px;white-space:nowrap; color:#111827; font-weight:1000;}
 
 .notes-success-sticker{
   display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;
@@ -116,7 +119,6 @@ tr:nth-child(even) td{background:#fff3fa}
   box-shadow:0 4px 10px #0003;font-size:32px;font-weight:1000;line-height:1;
 }
 
-/* إشعار النجاح */
 .save-success{
   position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;
   align-items:center;justify-content:center;background:#00000066; backdrop-filter:blur(4px);
@@ -134,7 +136,7 @@ tr:nth-child(even) td{background:#fff3fa}
   margin-top:20px;padding:12px 24px;border-radius:16px;background:#fff;color:#16885b;
   font-size:24px;font-weight:1000;box-shadow:0 8px 25px #0004;
 }
-.calendar-open .app,.calendar-open .invoice-card{display:none!important}.calendar-open{overflow:hidden}.persian-calendar{position:fixed;z-index:10000;display:none;top:70px;left:50%;transform:translateX(-50%);width:min(94vw,360px);background:#fff;border:3px solid #1c9b66;border-radius:20px;padding:14px;box-shadow:0 12px 35px #0003;direction:rtl}.persian-calendar.show{display:block}.pc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.pc-head button{border:0;background:#eef5ff;border-radius:10px;padding:8px 12px;font-size:18px;font-weight:900}.pc-title{font-size:20px;font-weight:1000;color:#1769e0}.pc-week,.pc-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.pc-week div{font-size:12px;font-weight:900;color:#60708d;padding:5px 0}.pc-days button{border:0;background:#f7faff;border-radius:9px;padding:9px 2px;font-weight:800;font-size:15px}.pc-days button.selected{background:#1c9b66!important;color:#fff!important;box-shadow:0 0 0 3px #1c9b6633;position:relative;outline:2px solid #20a94b}.pc-days button.selected::after{content:'✓';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);font-size:13px;line-height:16px;color:#20a94b;background:#fff;border-radius:50%;width:16px;height:16px}.pc-days button.empty{background:transparent}.pc-actions{display:flex;gap:8px;margin-top:10px}.pc-actions button{flex:1;border:0;border-radius:10px;padding:10px;font-weight:900;font-size:15px}.pc-cancel{background:#f2f5fa}.pc-confirm{background:#1c9b66;color:#fff}
+.calendar-open .app,.calendar-open .invoice-card{display:none!important}.calendar-open{overflow:hidden}.persian-calendar{position:fixed;z-index:10000;display:none;top:70px;left:50%;transform:translateX(-50%);width:min(94vw,360px);background:#fff;border:3px solid #1c9b66;border-radius:20px;padding:14px;box-shadow:0 12px 35px #0003;direction:rtl}.persian-calendar.show{display:block}.pc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.pc-head button{border:0;background:#eef5ff;border-radius:10px;padding:8px 12px;font-size:18px;font-weight:1000}.pc-title{font-size:20px;font-weight:1000;color:#1769e0}.pc-week,.pc-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.pc-week div{font-size:13px;font-weight:1000;color:#374151;padding:5px 0}.pc-days button{border:0;background:#f7faff;border-radius:9px;padding:9px 2px;font-weight:1000;font-size:16px; color:#111827;}.pc-days button.selected{background:#1c9b66!important;color:#fff!important;box-shadow:0 0 0 3px #1c9b6633;position:relative;outline:2px solid #20a94b}.pc-days button.selected::after{content:'✓';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);font-size:13px;line-height:16px;color:#20a94b;background:#fff;border-radius:50%;width:16px;height:16px}.pc-days button.empty{background:transparent}.pc-actions{display:flex;gap:8px;margin-top:10px}.pc-actions button{flex:1;border:0;border-radius:10px;padding:10px;font-weight:1000;font-size:16px}.pc-cancel{background:#f2f5fa; color:#111827;}.pc-confirm{background:#1c9b66;color:#fff}
 @media(max-width:620px){
   body{padding:8px}.top{border-radius:20px}h1{font-size:34px}.invoice-code{font-size:20px}
   .form-grid{grid-template-columns:1fr 1fr} .form-grid .wide{grid-column:1/-1}
@@ -145,15 +147,6 @@ tr:nth-child(even) td{background:#fff3fa}
 <body>
 <div class="app">
   <div class="top">
-    <!-- ارز فاکتور -->
-    <div class="currency-box">
-      <label for="currencySelectTop">انتخاب مبلغ</label>
-      <select id="currencySelectTop" title="انتخاب واحد پول">
-        <option value="AFN">افغانی</option>
-        <option value="TOMAN">تومان</option>
-      </select>
-    </div>
-    <!-- أزرار التقويم والتاريخ -->
     <div class="date-container">
       <div class="date-btn-wrapper">
         <span class="calendar-icon">📅</span>
@@ -164,8 +157,7 @@ tr:nth-child(even) td{background:#fff3fa}
     <h1>فاکتور</h1>
     <div class="code-currency-row">
       <div class="invoice-code" id="invoiceCode"></div>
-      <div class="currency-box">
-        <label for="currencySelectCode">انتخاب مبلغ</label>
+      <div class="currency-box-inline">
         <select id="currencySelectCode" title="انتخاب واحد پول">
           <option value="AFN">افغانی</option>
           <option value="TOMAN">تومان</option>
@@ -187,7 +179,7 @@ tr:nth-child(even) td{background:#fff3fa}
       <div>
         <label>واحد</label>
         <select id="unit">
-          <option value="" selected></option><option>کیلو</option><option>پاکت</option><option>بسته</option><option>عدد</option><option>شانه</option>
+          <option value="" selected></option><option>کیلو</option><option>گرم</option><option>پاکت</option><option>بسته</option><option>عدد</option><option>قوطی</option><option>شانه</option>
         </select>
       </div>
       <div>
@@ -236,9 +228,6 @@ tr:nth-child(even) td{background:#fff3fa}
 const $=id=>document.getElementById(id);
 let items=[];
 let editIndex=-1;
-let invoiceCode=generateInvoiceCode();
-// تاریخ فاکتور در شروع همیشه از تاریخ فعلی گوشی گرفته می‌شود.
-// اگر کاربر از تقویم تاریخ دیگری را انتخاب و تأیید کند، همان تاریخ تا زمان تغییر بعدی استفاده می‌شود.
 let invoiceDate=new Date();
 
 function getPhoneToday(){
@@ -251,25 +240,24 @@ function getJalaliToday(){
   return gregorianToJalali(d.getFullYear(),d.getMonth()+1,d.getDate());
 }
 
+// تولید کود فاکتور جدید و تصادفی در هر بار بارگذاری یا کشیدن صفحه به پایین
 function generateInvoiceCode(){
-  let code=localStorage.getItem('currentInvoiceCode');
-  if(!/^\\d{3}$/.test(String(code||''))) code=String(Math.floor(100+Math.random()*900));
+  const code=String(Math.floor(100+Math.random()*900));
   localStorage.setItem('currentInvoiceCode',code);
   return code;
 }
+
+let invoiceCode = generateInvoiceCode();
+
 function nextInvoiceCode(){
-  const code=String(Math.floor(100+Math.random()*900));
-  localStorage.setItem('currentInvoiceCode',code);
-  invoiceCode=code;
+  invoiceCode = generateInvoiceCode();
 }
 
 function getCurrency(){ return localStorage.getItem('invoiceCurrency') || 'AFN'; }
 function currencyName(){ return getCurrency()==='TOMAN' ? 'تومان' : 'افغانی'; }
 function updateCurrencyDisplay(){
   const c=getCurrency();
-  const top=$('currencySelectTop');
   const code=$('currencySelectCode');
-  if(top) top.value=c;
   if(code) code.value=c;
   document.querySelectorAll('[data-currency]').forEach(el=>el.textContent=currencyName());
 }
@@ -287,7 +275,6 @@ let pcTempDate=null;
 let pcSelectedYear,pcSelectedMonth,pcSelectedDay;
 const pMonths=['حمل','ثور','جوزا','سرطان','اسد','سنبله','میزان','عقرب','قوس','جدی','دلو','حوت'];
 function openPersianCalendar(){
-  // تقویم همیشه سال/ماه فعلی تقویم شمسی گوشی را در اختیار دارد.
   const current=gregorianToJalali(
     invoiceDate.getFullYear(),invoiceDate.getMonth()+1,invoiceDate.getDate()
   );
@@ -341,7 +328,6 @@ function renderPersianCalendar(){
     ? gregorianToJalali(pcTempDate.getFullYear(),pcTempDate.getMonth()+1,pcTempDate.getDate())
     : [pcSelectedYear,pcSelectedMonth,pcSelectedDay];
 
-  // «امروز» همیشه از تاریخ واقعی فعلی گوشی محاسبه می‌شود.
   const today=getJalaliToday();
 
   for(let i=0;i<start;i++){
@@ -356,7 +342,6 @@ function renderPersianCalendar(){
     b.type='button';
     b.textContent=fmt(d);
 
-    // فقط تاریخ انتخاب‌شده یک علامت سبز واضح دارد.
     if(selected[0]===pcYear && selected[1]===pcMonth && selected[2]===d){
       b.classList.add('selected');
       b.setAttribute('aria-selected','true');
@@ -372,7 +357,6 @@ function renderPersianCalendar(){
       pcSelectedMonth=pcMonth;
       pcSelectedDay=d;
       pcTempDate=jalaliToGregorian(pcYear,pcMonth,d);
-      // بعد از انتخاب، همان تاریخ فوراً سبز می‌ماند تا کاربر «تأیید تاریخ» را بزند.
       renderPersianCalendar();
     };
 
@@ -380,7 +364,6 @@ function renderPersianCalendar(){
   }
 }
 function gregorianToJalali(gy,gm,gd){
-  // تبدیل دقیق بر اساس تقویم شمسی پشتیبانی‌شده توسط مرورگر/گوشی
   const date=new Date(gy,gm-1,gd,12,0,0,0);
   const parts=new Intl.DateTimeFormat('en-US-u-ca-persian',{
     year:'numeric',month:'numeric',day:'numeric'
@@ -390,7 +373,6 @@ function gregorianToJalali(gy,gm,gd){
 }
 
 function jalaliToGregorian(jy,jm,jd){
-  // تبدیل معکوس با جست‌وجوی روز دقیق؛ از پرش چندساله جلوگیری می‌کند.
   const target=[Number(jy),Number(jm),Number(jd)];
   const baseYear=target[0]+621;
   const start=new Date(baseYear,2,1,12,0,0,0);
@@ -425,8 +407,7 @@ function render(){
     tb.appendChild(tr);
   });
   const total=items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0);
-  $('total').innerHTML=fmt(total)+' : '+currencyName();
-  $('count').textContent=fmt(items.length)+' جنس در فاکتور';
+  $('total').innerHTML=fmt(total)+' : '+currencyName();$('count').textContent=fmt(items.length)+' جنس در فاکتور';
 }
 function esc(s){
   return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -455,7 +436,6 @@ window.editItem=i=>{
 };
 $('notes').addEventListener('input',saveDraft);
 
-// قیمت جنس: بعد از هر سه رقم، جداکننده هزارگان نمایش داده شود (مثلاً 125,000)
 function formatPriceInput(){
   const input=$('price');
   const raw=String(input.value||'').replace(/[^0-9]/g,'');
@@ -463,8 +443,7 @@ function formatPriceInput(){
   input.value=Number(raw).toLocaleString('en-US');
 }
 $('price').addEventListener('input',formatPriceInput);
-$('price').addEventListener('blur',formatPriceInput);
-$('price').addEventListener('paste',()=>setTimeout(formatPriceInput,0));
+$('price').addEventListener('blur',formatPriceInput);$('price').addEventListener('paste',()=>setTimeout(formatPriceInput,0));
 window.deleteItem=i=>{
   if(confirm('این جنس از فاکتور حذف شود؟')){items.splice(i,1);render();saveDraft();}
 };
@@ -483,11 +462,6 @@ function loadDraft(){
       items=Array.isArray(saved.items)?saved.items:[];
       $('notes').value=saved.notes||'';
       if(saved.currency==='AFN'||saved.currency==='TOMAN') localStorage.setItem('invoiceCurrency',saved.currency);
-      if(/^\\d{3}$/.test(String(saved.invoiceCode||''))){
-        invoiceCode=String(saved.invoiceCode);
-        localStorage.setItem('currentInvoiceCode',invoiceCode);
-      }
-      // تاریخ قبلی دیگر از حافظه برگردانده نمی‌شود؛ تاریخ بالای فاکتور همیشه تاریخ فعلی گوشی است.
       invoiceDate = getPhoneToday();
     }
   }catch{
@@ -497,7 +471,6 @@ function loadDraft(){
   render();
 }
 
-// دکمه پاک کردن حالا توضیحات را هم پاک می کند
 $('clearBtn').onclick=()=>{
   if((items.length || $('notes').value) && confirm('همه جنس‌های این فاکتور و توضیحات پاک شود؟')){
     items=[]; $('notes').value=''; resetForm(); nextInvoiceCode(); saveDraft(); render();
@@ -520,7 +493,6 @@ function buildCapture(){
   const total=items.reduce((s,x)=>s+(clean(x.qty)*clean(x.price)),0);
   const notesRaw=$('notes').value.trim();
   const notes=notesRaw ? notesRaw.replace(/\n/g,'<br>') + '<span class="notes-success-sticker">✓</span>' : '<span class="notes-success-sticker">✓</span>';
-  // استفاده از تاریخ انتخاب شده
   const footerDate=invoiceDate.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
   
   let html=`<div class="capture-title">فاکتور</div>
@@ -539,7 +511,6 @@ function buildCapture(){
   $('capture').innerHTML=html;
 }
 
-// تولید نغمة النجاح (آلارم) 
 function playSuccessSound() {
   try {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -560,8 +531,8 @@ function playSuccessSound() {
     };
     
     const now = ctx.currentTime;
-    playTone(523.25, now, 0.15); // نت اول
-    playTone(659.25, now + 0.15, 0.3); // نت دوم
+    playTone(523.25, now, 0.15);
+    playTone(659.25, now + 0.15, 0.3);
   } catch (err) {
     console.log("Audio API Error", err);
   }
@@ -577,10 +548,8 @@ $('imageBtn').onclick=async()=>{
     a.href=canvas.toDataURL('image/png',1);
     a.click();
 
-    // تشغيل المنبه الصوتي (آلارم موفقيت)
     playSuccessSound();
 
-    // إظهار الإشعار المرئي
     const success=$('saveSuccess');
     success.classList.add('show');
     success.setAttribute('aria-hidden','false');
@@ -595,18 +564,31 @@ $('imageBtn').onclick=async()=>{
 };
 loadDraft();
 
-['currencySelectTop','currencySelectCode'].forEach(id=>{ const el=$(id); if(el) el.addEventListener('change',e=>{ localStorage.setItem('invoiceCurrency',e.target.value); updateCurrencyDisplay(); render(); saveDraft(); }); });
-  updateCurrencyDisplay();
+// قابلیت کشیدن صفحه به پایین (Pull-to-Refresh) برای تغییر کود فاکتور
+let touchStartY = 0;
+window.addEventListener('touchstart', e => {
+  touchStartY = e.touches[0].clientY;
+}, {passive: true});
 
-// اگر صفحه باز بماند و روز عوض شود، تاریخ بالای فاکتور نیز خودکار با تاریخ گوشی تازه می‌شود.
-// اگر کاربر قبلاً تاریخ دیگری را از تقویم تأیید کرده باشد، تا زمانی که صفحه/فاکتور را دوباره باز نکند همان تاریخ انتخابی حفظ می‌شود.
+window.addEventListener('touchend', e => {
+  const touchEndY = e.changedTouches[0].clientY;
+  // اگر صفحه در بالاترین نقطه باشد و کاربر به اندازه کافی صفحه را به پایین کشیده باشد
+  if (window.scrollY === 0 && (touchEndY - touchStartY > 120)) {
+    nextInvoiceCode();
+    render();
+    saveDraft();
+  }
+}, {passive: true});
+
+['currencySelectCode'].forEach(id=>{ const el=$(id); if(el) el.addEventListener('change',e=>{ localStorage.setItem('invoiceCurrency',e.target.value); updateCurrencyDisplay(); render(); saveDraft(); }); });
+updateCurrencyDisplay();
+
 let lastPhoneDayKey = getPhoneToday().toDateString();
 setInterval(()=>{
   const now=getPhoneToday();
   const key=now.toDateString();
   if(key!==lastPhoneDayKey){
     lastPhoneDayKey=key;
-    // فقط وقتی تقویم باز نیست، تاریخ پیش‌فرض فاکتور را به امروز منتقل کن.
     if(!$('persianCalendar').classList.contains('show')){
       invoiceDate=now;
       updateDateDisplay();
