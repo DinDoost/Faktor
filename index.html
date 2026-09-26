@@ -28,9 +28,18 @@ button,input,select{font:inherit; font-weight:900;}
 .top:before{left:10px}.top:after{right:10px}
 
 .code-currency-row{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5; margin-top: 10px;}
-.code-currency-row .invoice-code{margin:0}
 .currency-box-inline{display:flex;align-items:center;gap:6px;background:#eef5ff;border:2px solid #c8d8f0;border-radius:12px;padding:4px 10px;box-shadow:0 4px 8px #0001}
 .currency-box-inline select{width:auto;min-width:90px;border:0;padding:6px 8px;background:transparent;border-radius:7px;font-size:15px;font-weight:1000;outline:none;color:#111827; cursor:pointer;}
+
+/* استایل دکمه کوچک و جمع‌وجور کود */
+.invoice-code-container { display: flex; align-items: center; gap: 8px; }
+.code-btn {
+  background: linear-gradient(135deg,#20a94b,#15803d); color: #fff; border: 0;
+  border-radius: 10px; padding: 6px 12px; font-size: 14px; font-weight: 1000;
+  cursor: pointer; box-shadow: 0 3px 8px #00000018; display: flex; align-items: center; gap: 4px;
+}
+.code-btn:active { transform: scale(0.95); }
+.invoice-code-display { font-size: 20px; font-weight: 1000; color: #7040c7; direction: ltr; unicode-bidi: plaintext; }
 
 .date-container { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 6px; position: relative; z-index: 5; }
 .date-btn-wrapper {
@@ -44,7 +53,6 @@ button,input,select{font:inherit; font-weight:900;}
 .page-date { color:#111827; font-size:26px; font-weight:1000; direction:ltr; margin:0; }
 
 h1{text-align:center;color:#d92323;font-size:44px;margin:5px 0 2px;text-shadow:2px 2px #ffd8d8;font-weight:1000; position:relative; z-index:5;}
-.invoice-code{text-align:center;color:#7040c7;font-size:24px;font-weight:1000; position:relative; z-index:5;}
 
 .notes-box{margin-top:12px}
 textarea{width:100%;border:2px solid #dbe5f4;border-radius:12px;padding:12px 10px;background:#fff;outline:none;color:#111827;resize:vertical;font-family:inherit;font-size:17px; font-weight:900;}
@@ -94,7 +102,7 @@ tr:nth-child(even) td{background:#fff3fa}
 .invoice-card{ position:fixed;left:-10000px;top:0;width:900px;background:#fff; }
 #capture{ width:900px;padding:26px;background:linear-gradient(135deg,#fffdf6,#f7fbff); border:6px solid #16885b;border-radius:30px;overflow:hidden; }
 .capture-title{font-size:52px;text-align:center;color:#d92323;font-weight:1000;margin:3px 0 5px}
-.capture-sub{text-align:center;font-size:26px;color:#163f9c;font-weight:1000;margin-bottom:20px}
+.capture-sub{text-align:center;font-size:26px;color:#163f9c;font-weight:1000;margin-bottom:20px;direction:ltr;unicode-bidi:plaintext;}
 .capture-table{width:96%;margin:0 auto;border-collapse:separate;border-spacing:4px;table-layout:fixed}
 .capture-table th{font-size:22px;padding:14px 8px;font-weight:1000}
 .capture-table td{font-size:28px;padding:14px 8px;font-weight:1000; color:#111827;}
@@ -138,7 +146,6 @@ tr:nth-child(even) td{background:#fff3fa}
   font-size:24px;font-weight:1000;box-shadow:0 8px 25px #0004;
 }
 
-/* Modal برای لیست بازیابی فاکتورها */
 .modal-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10000;
   display: flex; align-items: center; justify-content: center; padding: 16px;
@@ -165,7 +172,7 @@ tr:nth-child(even) td{background:#fff3fa}
 
 .calendar-open .app,.calendar-open .invoice-card{display:none!important}.calendar-open{overflow:hidden}.persian-calendar{position:fixed;z-index:10000;display:none;top:70px;left:50%;transform:translateX(-50%);width:min(94vw,360px);background:#fff;border:3px solid #1c9b66;border-radius:20px;padding:14px;box-shadow:0 12px 35px #0003;direction:rtl}.persian-calendar.show{display:block}.pc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.pc-head button{border:0;background:#eef5ff;border-radius:10px;padding:8px 12px;font-size:18px;font-weight:1000}.pc-title{font-size:20px;font-weight:1000;color:#1769e0}.pc-week,.pc-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.pc-week div{font-size:13px;font-weight:1000;color:#374151;padding:5px 0}.pc-days button{border:0;background:#f7faff;border-radius:9px;padding:9px 2px;font-weight:1000;font-size:16px; color:#111827;}.pc-days button.selected{background:#1c9b66!important;color:#fff!important;box-shadow:0 0 0 3px #1c9b6633;position:relative;outline:2px solid #20a94b}.pc-days button.selected::after{content:'✓';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);font-size:13px;line-height:16px;color:#20a94b;background:#fff;border-radius:50%;width:16px;height:16px}.pc-days button.empty{background:transparent}.pc-actions{display:flex;gap:8px;margin-top:10px}.pc-actions button{flex:1;border:0;border-radius:10px;padding:10px;font-weight:1000;font-size:16px}.pc-cancel{background:#f2f5fa; color:#111827;}.pc-confirm{background:#1c9b66;color:#fff}
 @media(max-width:620px){
-  body{padding:8px}.top{border-radius:20px}h1{font-size:34px}.invoice-code{font-size:20px}
+  body{padding:8px}.top{border-radius:20px}h1{font-size:34px}
   .form-grid{grid-template-columns:1fr 1fr} .form-grid .wide{grid-column:1/-1}
   .panel{padding:12px} .actions{flex-wrap:wrap;} .actions .btn{flex: 1 1 45%;}
 }
@@ -183,7 +190,10 @@ tr:nth-child(even) td{background:#fff3fa}
     </div>
     <h1>فاکتور</h1>
     <div class="code-currency-row">
-      <div class="invoice-code" id="invoiceCode"></div>
+      <div class="invoice-code-container">
+        <button type="button" class="code-btn" onclick="customInvoiceCodePrompt()">کود</button>
+        <div class="invoice-code-display" id="invoiceCode"></div>
+      </div>
       <div class="currency-box-inline">
         <select id="currencySelectCode" title="انتخاب واحد پول">
           <option value="AFN">افغانی</option>
@@ -239,20 +249,17 @@ tr:nth-child(even) td{background:#fff3fa}
       <button class="btn image" id="imageBtn">▣ ذخیره عکس</button>
       <button class="btn clear" id="clearBtn">پاک‌کردن</button>
     </div>
-    <div class="notice">فاکتور ثبت‌شده در پوشه حافظه گوشی ذخیره شده و قابل بازیابی و ویرایش است.</div>
+    <div class="notice">فاکتور ثبت‌شده در پوشه «فاکتور» حافظه گوشی ذخیره و به‌روزرسانی می‌شود.</div>
   </div>
 </div>
 
-<!-- مدال لیست فاکتورهای ذخیره‌شده جهت بازیابی -->
 <div id="restoreModal" class="modal-overlay" aria-hidden="true">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title">📂 فاکتورهای ثبت‌شده</div>
+      <div class="modal-title">📂 انتخاب و ویرایش فاکتورها از پوشه فاکتور</div>
       <button class="modal-close" onclick="closeRestoreModal()">✕</button>
     </div>
-    <div class="modal-list" id="savedInvoicesList">
-      <!-- لیست فاکتورها اینجا لود می‌شود -->
-    </div>
+    <div class="modal-list" id="savedInvoicesList"></div>
   </div>
 </div>
 
@@ -262,7 +269,7 @@ tr:nth-child(even) td{background:#fff3fa}
 
 <div id="saveSuccess" class="save-success" aria-hidden="true">
   <div class="save-success-check">✓</div>
-  <div class="save-success-text">فاکتور با موفقیت ثبت شد</div>
+  <div class="save-success-text" id="saveSuccessText">فاکتور با موفقیت ثبت شد</div>
 </div>
 
 <script>
@@ -287,7 +294,22 @@ function generateInvoiceCode(){
   return code;
 }
 
-let invoiceCode = generateInvoiceCode();
+let invoiceCode = localStorage.getItem('currentInvoiceCode') || generateInvoiceCode();
+
+function customInvoiceCodePrompt(){
+  const input = prompt('لطفاً شماره دلخواه یا شماره موبایل خود را وارد کنید:', invoiceCode);
+  if(input !== null) {
+    const cleanInput = input.trim().replace(/[^0-9]/g, '');
+    if(cleanInput) {
+      invoiceCode = cleanInput;
+      localStorage.setItem('currentInvoiceCode', invoiceCode);
+      render();
+      saveDraft();
+    } else {
+      alert('لطفاً فقط از اعداد استفاده کنید.');
+    }
+  }
+}
 
 function nextInvoiceCode(){
   invoiceCode = generateInvoiceCode();
@@ -357,7 +379,6 @@ function jalaliMonthDays(y,m){
 
 function renderPersianCalendar(){
   $('pcTitle').textContent=pMonths[pcMonth-1]+' '+fmt(pcYear);
-
   const days=jalaliMonthDays(pcYear,pcMonth);
   const f=jalaliToGregorian(pcYear,pcMonth,1);
   const start=(f.getDay()+1)%7;
@@ -424,7 +445,7 @@ function jalaliToGregorian(jy,jm,jd){
       return d;
     }
   }
-  throw new Error('تبدیل تاریخ شمسی انجام نشد');
+  throw new Error('تبدیل تاریخ انجام نشد');
 }
 
 const fmt=n=>new Intl.NumberFormat('fa-IR').format(Math.round(Number(n)||0));
@@ -432,7 +453,8 @@ const parseMoney=v=>Math.max(0,Number(String(v??'').replace(/[^0-9.]/g,''))||0);
 const clean=n=>Math.max(0,Number(n)||0);
 
 function render(){
-  $('invoiceCode').textContent='کود: '+fmt(invoiceCode);
+  $('invoiceCode').textContent = invoiceCode;
+  
   const tb=$('rows'); tb.innerHTML='';$('empty').style.display=items.length?'none':'block';
   items.forEach((x,i)=>{
     const tr=document.createElement('tr');
@@ -467,7 +489,7 @@ $('addBtn').onclick=()=>{
     if(editIndex>=0) items[editIndex]=obj; else items.push(obj);
     resetForm(); render(); saveDraft();
   }catch(err){
-    console.error(err); alert('ثبت جنس انجام نشد. لطفاً دوباره تلاش کنید.');
+    console.error(err); alert('ثبت جنس انجام نشد.');
   }
 };
 window.editItem=i=>{
@@ -484,26 +506,28 @@ function formatPriceInput(){
 }
 $('price').addEventListener('input',formatPriceInput);
 $('price').addEventListener('blur',formatPriceInput);$('price').addEventListener('paste',()=>setTimeout(formatPriceInput,0));
+
 window.deleteItem=i=>{
   if(confirm('این جنس از فاکتور حذف شود؟')){items.splice(i,1);render();saveDraft();}
 };
 
 function saveDraft(){
-  localStorage.setItem('invoiceItems',JSON.stringify({
+  localStorage.setItem('invoiceDraft',JSON.stringify({
     items, notes:$('notes').value, invoiceCode, invoiceDate: invoiceDate.toISOString(), currency:getCurrency()
   }));
 }
 
 function loadDraft(){
   try{
-    const saved=JSON.parse(localStorage.getItem('invoiceItems')||'[]');
-    if(Array.isArray(saved)){ items=saved; $('notes').value=''; invoiceDate=getPhoneToday(); }
-    else{
-      items=Array.isArray(saved.items)?saved.items:[];
-      $('notes').value=saved.notes||'';
-      if(saved.currency==='AFN'||saved.currency==='TOMAN') localStorage.setItem('invoiceCurrency',saved.currency);
-      invoiceDate = getPhoneToday();
+    const saved=JSON.parse(localStorage.getItem('invoiceDraft')||'{}');
+    items=Array.isArray(saved.items)?saved.items:[];
+    $('notes').value=saved.notes||'';
+    if(saved.invoiceCode) {
+      invoiceCode=saved.invoiceCode;
+      localStorage.setItem('currentInvoiceCode', invoiceCode);
     }
+    if(saved.currency==='AFN'||saved.currency==='TOMAN') localStorage.setItem('invoiceCurrency',saved.currency);
+    invoiceDate = saved.invoiceDate ? new Date(saved.invoiceDate) : getPhoneToday();
   }catch{
     items=[];$('notes').value='';invoiceDate=getPhoneToday();
   }
@@ -517,12 +541,25 @@ $('clearBtn').onclick=()=>{
   }
 };
 
-// ثبت فاکتور در پوشه آرشیو حافظه با کد لحظه‌ای
-$('saveBtn').onclick=()=>{
+async function getFactorDirectory() {
+  if (!window.showDirectoryPicker) {
+    throw new Error("مرورگر شما از دسترسی مستقیم به پوشه‌های حافظه پشتیبانی نمی‌کند.");
+  }
+  let dirHandle = window.factorDirHandle;
+  if (!dirHandle) {
+    try {
+      dirHandle = await window.showDirectoryPicker({ id: 'factor-main-dir', mode: 'readwrite', startIn: 'documents' });
+    } catch(e) {
+      dirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+    }
+    window.factorDirHandle = dirHandle;
+  }
+  return await dirHandle.getDirectoryHandle('فاکتور', { create: true });
+}
+
+$('saveBtn').onclick=async()=>{
   if(!items.length){alert('اول حداقل یک جنس اضافه کنید.');return}
-  
-  let archive = JSON.parse(localStorage.getItem('invoiceArchive') || '{}');
-  archive[invoiceCode] = {
+  const invoiceData = {
     invoiceCode,
     items,
     notes: $('notes').value,
@@ -531,79 +568,121 @@ $('saveBtn').onclick=()=>{
     date: invoiceDate.toISOString(),
     shamsiDate: invoiceDate.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'})
   };
-  localStorage.setItem('invoiceArchive', JSON.stringify(archive));
 
-  const success=$('saveSuccess');
-  success.classList.add('show');
-  success.setAttribute('aria-hidden','false');
-  setTimeout(()=>{
-    success.classList.remove('show');
-    success.setAttribute('aria-hidden','true');
-  },1800);
+  try {
+    const folder = await getFactorDirectory();
+    const fileName = `factor_${invoiceCode}.json`;
+    let fileHandle;
+    let isUpdate = false;
+    try {
+      fileHandle = await folder.getFileHandle(fileName);
+      isUpdate = true;
+    } catch(e) {
+      fileHandle = await folder.getFileHandle(fileName, { create: true });
+    }
+
+    const writable = await fileHandle.createWritable();
+    await writable.write(JSON.stringify(invoiceData, null, 2));
+    await writable.close();
+
+    $('saveSuccessText').textContent = isUpdate ? 'فاکتور قبلی با موفقیت به‌روزرسانی شد' : 'فاکتور جدید با موفقیت ثبت شد';
+    const success=$('saveSuccess');
+    success.classList.add('show');
+    success.setAttribute('aria-hidden','false');
+    setTimeout(()=>{
+      success.classList.remove('show');
+      success.setAttribute('aria-hidden','true');
+    },1800);
+  } catch (err) {
+    console.error(err);
+    alert('ثبت در پوشه حافظه انجام نشد یا دسترسی لغو گردید.');
+  }
 };
 
-// دکمه بازیابی (باز کردن لیست پوشه فاکتورها)
-$('restoreBtn').onclick = () => {
-  const archive = JSON.parse(localStorage.getItem('invoiceArchive') || '{}');
-  const listEl = $('savedInvoicesList');
-  listEl.innerHTML = '';
+$('restoreBtn').onclick = async () => {
+  try {
+    const folder = await getFactorDirectory();
+    const listEl = $('savedInvoicesList');
+    listEl.innerHTML = '';
 
-  const keys = Object.keys(archive);
-  if(keys.length === 0) {
-    listEl.innerHTML = '<div style="text-align:center;padding:20px;color:#555;font-weight:900;">هیچ فاکتوری در پوشه ثبت نشده است.</div>';
-  } else {
-    keys.forEach(code => {
-      const inv = archive[code];
-      const card = document.createElement('div');
-      card.className = 'saved-item-card';
-      card.innerHTML = `
-        <div class="saved-info">
-          کد فاکتور: ${fmt(inv.invoiceCode)} (${inv.shamsiDate})
-          <span>تعداد اقلام: ${fmt(inv.items.length)} | مجموع: ${fmt(inv.total)} ${inv.currency==='TOMAN'?'تومان':'افغانی'}</span>
-        </div>
-        <div style="display:flex;gap:6px;">
-          <button class="btn-load" onclick="loadInvoice('${code}')">بارگذاری</button>
-          <button class="btn-del-saved" onclick="deleteSavedInvoice('${code}')">حذف</button>
-        </div>
-      `;
-      listEl.appendChild(card);
-    });
+    let count = 0;
+    for await (const [name, handle] of folder.entries()) {
+      if (handle.kind === 'file' && name.endsWith('.json')) {
+        count++;
+        const file = await handle.getFile();
+        const text = await file.text();
+        try {
+          const inv = JSON.parse(text);
+          const card = document.createElement('div');
+          card.className = 'saved-item-card';
+          card.innerHTML = `
+            <div class="saved-info">
+              کد: ${inv.invoiceCode || 'نامشخص'} (${inv.shamsiDate || ''})
+              <span>اقلام: ${fmt(inv.items ? inv.items.length : 0)} | مجموع: ${fmt(inv.total || 0)} ${inv.currency==='TOMAN'?'تومان':'افغانی'}</span>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button class="btn-load" onclick="loadInvoiceFromFile('${name}')">انتخاب</button>
+              <button class="btn-del-saved" onclick="deleteInvoiceFile('${name}')">حذف</button>
+            </div>
+          `;
+          listEl.appendChild(card);
+        } catch(e) { console.error(e); }
+      }
+    }
+
+    if(count === 0) {
+      listEl.innerHTML = '<div style="text-align:center;padding:20px;color:#555;font-weight:900;">هیچ فاکتوری یافت نشد.</div>';
+    }
+
+    $('restoreModal').classList.add('show');$('restoreModal').setAttribute('aria-hidden', 'false');
+  } catch (err) {
+    console.error(err);
+    alert('دسترسی به پوشه فاکتورها انجام نشد.');
   }
-  $('restoreModal').classList.add('show');$('restoreModal').setAttribute('aria-hidden', 'false');
 };
 
 function closeRestoreModal() {
   $('restoreModal').classList.remove('show');$('restoreModal').setAttribute('aria-hidden', 'true');
 }
 
-// بارگذاری فاکتور انتخابی برای ویرایش
-window.loadInvoice = (code) => {
-  const archive = JSON.parse(localStorage.getItem('invoiceArchive') || '{}');
-  const inv = archive[code];
-  if(!inv) return;
+window.loadInvoiceFromFile = async (fileName) => {
+  try {
+    const folder = await getFactorDirectory();
+    const fileHandle = await folder.getFileHandle(fileName);
+    const file = await fileHandle.getFile();
+    const text = await file.text();
+    const inv = JSON.parse(text);
 
-  invoiceCode = inv.invoiceCode;
-  items = inv.items;
-  $('notes').value = inv.notes || '';
-  invoiceDate = new Date(inv.date);
-  if(inv.currency) {
-    localStorage.setItem('invoiceCurrency', inv.currency);
+    invoiceCode = inv.invoiceCode;
+    localStorage.setItem('currentInvoiceCode', invoiceCode);
+    items = inv.items || [];
+    $('notes').value = inv.notes || '';
+    invoiceDate = inv.date ? new Date(inv.date) : getPhoneToday();
+    if(inv.currency) {
+      localStorage.setItem('invoiceCurrency', inv.currency);
+    }
+    updateCurrencyDisplay();
+    updateDateDisplay();
+    render();
+    saveDraft();
+    closeRestoreModal();
+    alert('فاکتور انتخاب‌شده بارگذاری شد.');
+  } catch (err) {
+    console.error(err);
+    alert('بارگذاری فایل انجام نشد.');
   }
-  updateCurrencyDisplay();
-  updateDateDisplay();
-  render();
-  saveDraft();
-  closeRestoreModal();
-  alert('فاکتور با موفقیت بازیابی شد. اکنون می‌توانید آن را ویرایش کنید.');
 };
 
-// حذف فاکتور از پوشه ذخیره‌شده
-window.deleteSavedInvoice = (code) => {
-  if(confirm('این فاکتور از پوشه حذف شود؟')) {
-    let archive = JSON.parse(localStorage.getItem('invoiceArchive') || '{}');
-    delete archive[code];
-    localStorage.setItem('invoiceArchive', JSON.stringify(archive));
-    $('restoreBtn').click(); // به‌روزرسانی لیست
+window.deleteInvoiceFile = async (fileName) => {
+  if(confirm('این فاکتور از حافظه حذف شود؟')) {
+    try {
+      const folder = await getFactorDirectory();
+      await folder.removeEntry(fileName);
+      $('restoreBtn').click();
+    } catch (err) {
+      console.error(err);
+      alert('حذف فایل انجام نشد.');
+    }
   }
 };
 
@@ -614,7 +693,7 @@ function buildCapture(){
   const footerDate=invoiceDate.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
   
   let html=`<div class="capture-title">فاکتور</div>
-  <div class="capture-sub">کود: ${fmt(invoiceCode)}</div>
+  <div class="capture-sub">کود: ${invoiceCode}</div>
   <table class="capture-table"><thead><tr><th style="background:#7040c7">شماره</th><th style="background:#ed1670">جنس</th><th style="background:#20a94b">مقدار</th><th style="background:#1769e0">واحد</th><th style="background:#ff8a00">قیمت واحد (${currencyName()})</th><th style="background:#a21caf">جمع مبلغ (${currencyName()})</th></tr></thead><tbody>`;
   items.forEach((x,i)=>html+=`<tr><td>${fmt(i+1)}</td><td>${esc(x.name)}</td><td>${fmt(x.qty)}</td><td>${esc(x.unit)}</td><td>${fmt(x.price)}</td><td>${fmt(clean(x.qty)*clean(x.price))}</td></tr>`);
   html+=`</tbody></table><div class="capture-total">جمع مبلغ کل: ${fmt(total)} : ${currencyName()}</div>
@@ -649,24 +728,21 @@ function playSuccessSound() {
     const now = ctx.currentTime;
     playTone(523.25, now, 0.15);
     playTone(659.25, now + 0.15, 0.3);
-  } catch (err) {
-    console.log("Audio API Error", err);
-  }
+  } catch (err) {}
 }
 
 $('imageBtn').onclick=async()=>{
-  if(!items.length){alert('اول جنس‌ها را اضافه و سپس ثبت کنید.');return}
+  if(!items.length){alert('اول جنس‌ها را اضافه کنید.');return}
   try{
     buildCapture();
     const canvas=await html2canvas($('capture'),{scale:2.5,useCORS:true,backgroundColor:'#fff',logging:false});
     const a=document.createElement('a');
-    a.download='فاکتور-کد-'+invoiceCode+'-'+invoiceDate.toLocaleDateString('fa-IR').replaceAll('/','-')+'.png';
+    a.download='factor-'+invoiceCode+'.png';
     a.href=canvas.toDataURL('image/png',1);
     a.click();
-
     playSuccessSound();
 
-    const success=$('saveSuccess');
+    const success=$('saveSuccess');$('saveSuccessText').textContent = 'عکس فاکتور با موفقیت ذخیره شد';
     success.classList.add('show');
     success.setAttribute('aria-hidden','false');
     setTimeout(()=>{
@@ -675,43 +751,14 @@ $('imageBtn').onclick=async()=>{
     },1800);
   }catch(err){
     console.error(err);
-    alert('ذخیره عکس انجام نشد. لطفاً دوباره تلاش کنید.');
+    alert('ذخیره عکس انجام نشد.');
   }
 };
+
 loadDraft();
-
-// قابلیت کشیدن صفحه به پایین (Pull-to-Refresh) برای تغییر کود فاکتور
-let touchStartY = 0;
-window.addEventListener('touchstart', e => {
-  touchStartY = e.touches[0].clientY;
-}, {passive: true});
-
-window.addEventListener('touchend', e => {
-  const touchEndY = e.changedTouches[0].clientY;
-  if (window.scrollY === 0 && (touchEndY - touchStartY > 120)) {
-    nextInvoiceCode();
-    render();
-    saveDraft();
-  }
-}, {passive: true});
 
 ['currencySelectCode'].forEach(id=>{ const el=$(id); if(el) el.addEventListener('change',e=>{ localStorage.setItem('invoiceCurrency',e.target.value); updateCurrencyDisplay(); render(); saveDraft(); }); });
 updateCurrencyDisplay();
-
-let lastPhoneDayKey = getPhoneToday().toDateString();
-setInterval(()=>{
-  const now=getPhoneToday();
-  const key=now.toDateString();
-  if(key!==lastPhoneDayKey){
-    lastPhoneDayKey=key;
-    if(!$('persianCalendar').classList.contains('show')){
-      invoiceDate=now;
-      updateDateDisplay();
-      saveDraft();
-      render();
-    }
-  }
-},60000);
 </script>
 </body>
 </html>
