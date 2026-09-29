@@ -195,29 +195,56 @@ tr:nth-child(even) td{background:#fff3fa}
   font-size:24px;font-weight:1000;box-shadow:0 8px 25px #0004;
 }
 
+/* استایل بهینه‌شده و شیک برای مودال‌ها */
 .modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100000;
+  position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 100000;
   display: flex; align-items: center; justify-content: center; padding: 16px;
   opacity: 0; visibility: hidden; pointer-events: none; transition: 0.2s;
 }
 .modal-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
 .modal-box {
-  background: #fff; width: 100%; max-width: 500px; border-radius: 24px;
-  padding: 20px; max-height: 80vh; display: flex; flex-direction: column;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 3px solid #7040c7;
+  background: #fff; width: 100%; max-width: 520px; border-radius: 24px;
+  padding: 20px; max-height: 85vh; display: flex; flex-direction: column;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25); border: 3px solid #7040c7;
 }
 .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .modal-title { font-size: 20px; font-weight: 1000; color: #7040c7; }
 .modal-close { background: #f2f5fa; border: 0; border-radius: 50%; width: 36px; height: 36px; font-size: 18px; cursor: pointer; font-weight: 1000; }
-.modal-list { overflow-y: auto; display: flex; flex-direction: column; gap: 10px; max-height: 50vh; }
-.saved-item-card {
-  background: #f8fbff; border: 2px solid #d8e5ff; border-radius: 14px; padding: 12px;
-  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+
+.modal-top-actions { margin-bottom: 14px; }
+.btn-import-file {
+  width: 100%;
+  background: linear-gradient(135deg, #20a94b, #15803d);
+  color: #fff; border: 0; padding: 12px 16px; border-radius: 14px;
+  font-weight: 1000; font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 4px 12px rgba(32,169,75,0.25); transition: transform 0.12s;
 }
-.saved-info { font-size: 15px; font-weight: 900; color: #111827; }
-.saved-info span { display: block; font-size: 13px; color: #555; margin-top: 3px; }
-.btn-load { background: #20a94b; color: #fff; border: 0; padding: 8px 14px; border-radius: 10px; cursor: pointer; font-weight: 1000; }
-.btn-del-saved { background: #ef3340; color: #fff; border: 0; padding: 8px 10px; border-radius: 10px; cursor: pointer; font-weight: 1000; }
+.btn-import-file:active { transform: scale(0.96); }
+
+.modal-list { overflow-y: auto; display: flex; flex-direction: column; gap: 12px; max-height: 55vh; padding-left: 2px; }
+
+/* استایل شیک کارت‌های فاکتور ذخیره‌شده و چیدمان دکمه‌ها */
+.saved-item-card {
+  background: #f8fbff; border: 2px solid #d8e5ff; border-radius: 18px; padding: 14px;
+  display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.saved-card-header { display: flex; justify-content: space-between; align-items: center; }
+.saved-info { font-size: 15px; font-weight: 1000; color: #111827; }
+.saved-info span { display: block; font-size: 13px; color: #555; margin-top: 4px; font-weight: 900; }
+
+.saved-card-actions {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; width: 100%;
+}
+.saved-card-actions .btn-action {
+  border: 0; padding: 10px 4px; border-radius: 12px; font-weight: 1000; font-size: 13px;
+  cursor: pointer; text-align: center; transition: transform 0.12s, filter 0.12s;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.saved-card-actions .btn-action:active { transform: scale(0.95); }
+.btn-action.load { background: #1769e0; color: #fff; box-shadow: 0 3px 8px rgba(23,105,224,0.2); }
+.btn-action.copy { background: #7040c7; color: #fff; box-shadow: 0 3px 8px rgba(112,64,199,0.2); }
+.btn-action.del { background: #ef3340; color: #fff; box-shadow: 0 3px 8px rgba(239,51,64,0.2); }
 
 .calendar-open .app,.calendar-open .invoice-card{display:none!important}.calendar-open{overflow:hidden}.persian-calendar{position:fixed;z-index:100000;display:none;top:70px;left:50%;transform:translateX(-50%);width:min(94vw,360px);background:#fff;border:3px solid #1c9b66;border-radius:20px;padding:14px;box-shadow:0 12px 35px #0003;direction:rtl}.persian-calendar.show{display:block}.pc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.pc-head button{border:0;background:#eef5ff;border-radius:10px;padding:8px 12px;font-size:18px;font-weight:1000}.pc-title{font-size:20px;font-weight:1000;color:#1769e0}.pc-week,.pc-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.pc-week div{font-size:13px;font-weight:1000;color:#374151;padding:5px 0}.pc-days button{border:0;background:#f7faff;border-radius:9px;padding:9px 2px;font-weight:1000;font-size:16px; color:#111827;}.pc-days button.selected{background:#1c9b66!important;color:#fff!important;box-shadow:0 0 0 3px #1c9b6633;position:relative;outline:2px solid #20a94b}.pc-days button.selected::after{content:'✓';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);font-size:13px;line-height:16px;color:#20a94b;background:#fff;border-radius:50%;width:16px;height:16px}.pc-days button.empty{background:transparent}.pc-actions{display:flex;gap:8px;margin-top:10px}.pc-actions button{flex:1;border:0;border-radius:10px;padding:10px;font-weight:1000;font-size:16px}.pc-cancel{background:#f2f5fa; color:#111827;}.pc-confirm{background:#1c9b66;color:#fff}
 @media(max-width:620px){
@@ -335,12 +362,22 @@ tr:nth-child(even) td{background:#fff3fa}
   </div>
 </div>
 
+<!-- مودال بازیابی و بازگردانی فاکتورها -->
 <div id="restoreModal" class="modal-overlay" aria-hidden="true">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title">📂 انتخاب، ویرایش یا حذف فاکتورها</div>
+      <div class="modal-title">📂 مدیریت و بازیابی فاکتورها</div>
       <button class="modal-close" onclick="closeRestoreModal()" type="button">✕</button>
     </div>
+    
+    <!-- دکمه ورود فایل از حافظه گوشی -->
+    <div class="modal-top-actions">
+      <button class="btn-import-file" onclick="$('importFileInput').click()" type="button">
+        📥 بازگردانی فاکتور از فایل (حافظه گوشی)
+      </button>
+      <input type="file" id="importFileInput" accept=".json" style="display:none;" onchange="importInvoiceFile(event)">
+    </div>
+
     <div class="modal-list" id="savedInvoicesList"></div>
   </div>
 </div>
@@ -675,37 +712,43 @@ $('saveBtn').onclick = () => {
 };
 
 $('restoreBtn').onclick = () => {
+  renderSavedInvoicesList();
+  $('restoreModal').classList.add('show');$('restoreModal').setAttribute('aria-hidden', 'false');
+};
+
+function renderSavedInvoicesList() {
   try {
     const savedList = JSON.parse(localStorage.getItem('savedInvoicesList') || '[]');
     const listEl = $('savedInvoicesList');
     listEl.innerHTML = '';
 
     if(savedList.length === 0) {
-      listEl.innerHTML = '<div style="text-align:center;padding:20px;color:#555;font-weight:900;">هیچ فاکتوری ذخیره نشده است.</div>';
+      listEl.innerHTML = '<div style="text-align:center;padding:25px;color:#555;font-weight:900;line-height:1.8;">هیچ فاکتوری هنوز ذخیره نشده است.<br><small style="color:#888;font-size:13px;">می‌توانید با دکمه سبز بالا، فایل کپی‌شده را وارد کنید.</small></div>';
     } else {
       savedList.forEach(inv => {
         const card = document.createElement('div');
         card.className = 'saved-item-card';
         card.innerHTML = `
-          <div class="saved-info">
-            کد: ${inv.invoiceCode || 'بدون کد'} (${inv.shamsiDate || ''})
-            <span>اقلام: ${fmt(inv.items ? inv.items.length : 0)} | مجموع: ${fmt(inv.total || 0)} ${inv.currency==='TOMAN'?'تومان':'افغانی'}</span>
+          <div class="saved-card-header">
+            <div class="saved-info">
+              کد: ${inv.invoiceCode || 'بدون کد'} (${inv.shamsiDate || ''})
+              <span>اقلام: ${fmt(inv.items ? inv.items.length : 0)} | مجموع: ${fmt(inv.total || 0)} ${inv.currency==='TOMAN'?'تومان':'افغانی'}</span>
+            </div>
           </div>
-          <div style="display:flex;gap:6px;">
-            <button class="btn-load" onclick="loadInvoice('${inv.id}')" type="button">انتخاب</button>
-            <button class="btn-del-saved" onclick="deleteSavedInvoice('${inv.id}')" type="button">حذف</button>
+          <div class="saved-card-actions">
+            <button class="btn-action load" onclick="loadInvoice('${inv.id}')" type="button">✏️ انتخاب</button>
+            <button class="btn-action copy" onclick="exportInvoiceFile('${inv.id}')" type="button">📋 کپی فایل</button>
+            <button class="btn-action del" onclick="deleteSavedInvoice('${inv.id}')" type="button">🗑️ حذف</button>
           </div>
         `;
         listEl.appendChild(card);
       });
     }
-
-    $('restoreModal').classList.add('show');$('restoreModal').setAttribute('aria-hidden', 'false');
   } catch (err) {
     console.error(err);
     alert('خطا در خواندن فاکتورهای ذخیره‌شده.');
   }
-};
+}
 
 function closeRestoreModal() {
   $('restoreModal').classList.remove('show');$('restoreModal').setAttribute('aria-hidden', 'true');
@@ -737,6 +780,93 @@ window.loadInvoice = (id) => {
   }
 };
 
+function toEnglishDigits(v){
+  return String(v ?? '').replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
+}
+
+function getSolarDateTimeFile(dateObj = new Date()){
+  const parts = new Intl.DateTimeFormat('en-US-u-ca-persian',{
+    year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false
+  }).formatToParts(dateObj);
+  const get=t=>parts.find(x=>x.type===t)?.value || '';
+  return {date:`${get('year')}/${get('month')}/${get('day')}`, time:`${get('hour')}:${get('minute')}:${get('second')}`};
+}
+
+window.exportInvoiceFile = (id) => {
+  try{
+    const savedList = JSON.parse(localStorage.getItem('savedInvoicesList') || '[]');
+    const inv = savedList.find(x => x.id === id);
+    if(!inv){ alert('فاکتور مورد نظر یافت نشد.'); return; }
+    const now = new Date();
+    const st = getSolarDateTimeFile(now);
+    const code = inv.invoiceCode ? toEnglishDigits(inv.invoiceCode) : 'بدون-کود';
+    const fileName = `فاکتور (${code})_${st.date} [${st.time.replace(/:/g,'-')}].json`;
+    const exportData = JSON.parse(JSON.stringify(inv));
+    exportData.copiedAt = now.toISOString();
+    exportData.copiedSolarDate = st.date;
+    exportData.copiedTime = st.time;
+    exportData.fileName = fileName;
+    const blob = new Blob([JSON.stringify(exportData,null,2)],{type:'application/json;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fileName;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  }catch(err){ console.error(err); alert('کپی فایل انجام نشد.'); }
+};
+
+/* بازگردانی و بارگذاری فاکتور از فایل گوشی */
+window.importInvoiceFile = (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data || (!data.items && !Array.isArray(data.items))) {
+        alert('فایل انتخاب شده معتبر نیست یا محتوای فاکتور در آن یافت نشد.');
+        return;
+      }
+
+      const importedInv = {
+        id: data.id || ('inv_' + Date.now()),
+        invoiceCode: data.invoiceCode || '',
+        items: Array.isArray(data.items) ? data.items : [],
+        notes: data.notes || '',
+        total: data.total || 0,
+        currency: data.currency || 'AFN',
+        date: data.date || new Date().toISOString(),
+        shamsiDate: data.shamsiDate || (data.date ? new Date(data.date).toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'}) : '')
+      };
+
+      let savedList = [];
+      try {
+        savedList = JSON.parse(localStorage.getItem('savedInvoicesList') || '[]');
+      } catch(err) { savedList = []; }
+
+      const existingIndex = savedList.findIndex(x => x.id === importedInv.id);
+      if (existingIndex >= 0) {
+        savedList[existingIndex] = importedInv;
+      } else {
+        savedList.unshift(importedInv);
+      }
+
+      localStorage.setItem('savedInvoicesList', JSON.stringify(savedList));
+      
+      // بارگذاری مستقیم فاکتور وارد شده
+      loadInvoice(importedInv.id);
+      alert('فاکتور از فایل با موفقیت بازگردانی و بارگذاری شد!');
+    } catch (err) {
+      console.error(err);
+      alert('خطا در خواندن فایل فاکتور. لطفاً مطمئن شوید فایل صحیح را انتخاب کرده‌اید.');
+    } finally {
+      event.target.value = '';
+    }
+  };
+  reader.readAsText(file);
+};
+
 window.deleteSavedInvoice = (id) => {
   if(confirm('این فاکتور از حافظه حذف شود؟')) {
     try {
@@ -744,7 +874,7 @@ window.deleteSavedInvoice = (id) => {
       savedList = savedList.filter(x => x.id !== id);
       localStorage.setItem('savedInvoicesList', JSON.stringify(savedList));
       if(currentSavingId === id) currentSavingId = null;
-      $('restoreBtn').click();
+      renderSavedInvoicesList();
     } catch (err) {
       console.error(err);
       alert('حذف فاکتور انجام نشد.');
