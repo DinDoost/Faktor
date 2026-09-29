@@ -551,7 +551,7 @@ function jalaliToGregorian(jy,jm,jd){
 }
 
 const fmt=n=>new Intl.NumberFormat('fa-IR').format(Math.round(Number(n)||0));
-const parseMoney=v=>Math.max(0,Number(String(v??'').replace(/[^0-9.]/g,''))||0);
+const parseMoney=v=>Math.max(0,Number(String(v??'').replace(/[^0-9.]/g, ''))||0);
 const clean=n=>Math.max(0,Number(n)||0);
 
 function updateCodeUI(){
@@ -784,28 +784,19 @@ function toEnglishDigits(v){
   return String(v ?? '').replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
 }
 
-function getSolarDateTimeFile(dateObj = new Date()){
-  const parts = new Intl.DateTimeFormat('en-US-u-ca-persian',{
-    year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false
-  }).formatToParts(dateObj);
-  const get=t=>parts.find(x=>x.type===t)?.value || '';
-  return {date:`${get('year')}/${get('month')}/${get('day')}`, time:`${get('hour')}:${get('minute')}:${get('second')}`};
-}
-
 window.exportInvoiceFile = (id) => {
   try{
     const savedList = JSON.parse(localStorage.getItem('savedInvoicesList') || '[]');
     const inv = savedList.find(x => x.id === id);
     if(!inv){ alert('فاکتور مورد نظر یافت نشد.'); return; }
-    const now = new Date();
-    const st = getSolarDateTimeFile(now);
-    const code = inv.invoiceCode ? toEnglishDigits(inv.invoiceCode) : 'بدون-کود';
-    const fileName = `فاکتور (${code})_${st.date} [${st.time.replace(/:/g,'-')}].json`;
+    
+    const code = inv.invoiceCode ? toEnglishDigits(inv.invoiceCode) : '';
+    // نام فایل ترکیبی با پیشوند فاکتورساز بدون تاریخ و ساعت
+    const fileName = code ? `فاکتورساز (${code}).json` : `فاکتورساز.json`;
+    
     const exportData = JSON.parse(JSON.stringify(inv));
-    exportData.copiedAt = now.toISOString();
-    exportData.copiedSolarDate = st.date;
-    exportData.copiedTime = st.time;
     exportData.fileName = fileName;
+    
     const blob = new Blob([JSON.stringify(exportData,null,2)],{type:'application/json;charset=utf-8'});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
