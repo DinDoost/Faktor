@@ -111,7 +111,7 @@ textarea{resize:vertical; line-height:1.8}
 
 /* ---------- Table ---------- */
 .tbl-wrap{overflow-x:auto; border-radius:18px; border:1px solid var(--line)}
-table{width:100%; border-collapse:collapse; min-width:680px; background:#fff}
+table{width:100%; border-collapse:collapse; background:#fff}
 th{background:var(--ink); color:#fff; padding:14px 8px; font-size:17px; font-weight:800; white-space:nowrap}
 td{padding:14px 8px; text-align:center; border-top:1px solid var(--line); font-size:18px; font-weight:700}
 tbody tr:nth-child(even) td{background:#fbfdff}
@@ -176,112 +176,70 @@ tbody tr:hover td{background:#eff6ff}
 .cal-actions{display:flex; gap:10px; margin-top:16px}
 .cal-actions button{flex:1; border:0; border-radius:14px; padding:13px; font-size:18px; font-weight:800; cursor:pointer}
 
-/* ---------- Capture (hidden, used for image export) ---------- */
-.capture-stage{position:fixed; left:-10000px; top:0; width:900px}
-#capture{
-  width:900px; padding:34px; background:#fff; border:6px solid #15803d; border-radius:30px;
-  font-family:Vazirmatn,Tahoma,sans-serif; color:var(--ink);
-}
-.cap-head{display:flex; justify-content:space-between; align-items:center; border-bottom:3px dashed #cbd5e1; padding-bottom:18px; margin-bottom:22px}
-.cap-title{font-size:68px; font-weight:900; color:var(--p); line-height:1.2}
-.cap-meta{text-align:left; font-size:28px; font-weight:800; color:#334155}
-.cap-meta div{margin-bottom:6px}
-.cap-table{width:100%; border-collapse:separate; border-spacing:0; border:2px solid var(--line); border-radius:18px; overflow:hidden; table-layout:fixed}
-.cap-table th{background:var(--ink); color:#fff; font-size:22px; padding:16px 6px; font-weight:800}
-.cap-table td{font-size:26px; padding:16px 6px; text-align:center; font-weight:700; border-top:2px solid var(--line)}
-.cap-table tbody tr:nth-child(even) td{background:#f8fafc}
-.cap-total{margin-top:24px; background:linear-gradient(135deg,#fef9c3,#fde047); border:4px solid #eab308; border-radius:22px; padding:22px; text-align:center}
-.cap-total span{display:block; font-size:28px; font-weight:800; color:#713f12}
-.cap-total strong{font-size:52px; font-weight:900; color:#854d0e}
-.cap-foot{display:grid; grid-template-columns:1.6fr 1fr; gap:16px; margin-top:22px}
-.cap-box{border:2px solid var(--line); border-radius:18px; padding:18px; background:#fff}
-.cap-box h4{margin:0 0 8px; font-size:22px; font-weight:800; color:var(--p)}
-.cap-box p{margin:0; font-size:26px; font-weight:700; line-height:1.8}
-.cap-check{
-  display:inline-flex; align-items:center; justify-content:center; width:50px; height:50px; border-radius:50%;
-  background:#16a34a; color:#fff; font-size:32px; font-weight:900; margin-right:10px; vertical-align:middle;
-}
+/* ---------- Invoice (milk-tea; same design in the app and in the saved image) ---------- */
+.capture-stage{position:fixed; left:-10000px; top:0; width:390px}
+.inv{background:#e6cfae; border:2px solid #a5835c; border-radius:20px; padding:14px; color:#3b2415; margin-top:14px}
+#capture{width:390px; box-sizing:border-box; padding:12px; border-radius:16px; background:#e6cfae; border:2px solid #a5835c; color:#3b2415; font-family:Vazirmatn,Tahoma,sans-serif}
+.inv-head{display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; border-bottom:3px solid #6b4a2f; padding-bottom:10px; margin-bottom:12px}
+.inv-title{font-size:30px; font-weight:900}
+.inv-meta{font-size:16px; font-weight:800; background:#f6ead8; border-radius:12px; padding:6px 12px}
+.itbl{width:100%; border-collapse:collapse; table-layout:fixed; background:#fff}
+.itbl th{background:#6b4a2f; color:#fff; font-size:16px; font-weight:900; padding:10px 4px; border:1px solid #a5835c; line-height:1.4}
+.itbl td{padding:9px 6px; text-align:center; font-size:17px; font-weight:700; border:1px solid #a5835c; vertical-align:middle; word-break:break-word; overflow-wrap:anywhere}
+.itbl tbody tr:nth-child(odd) td{background:#fffaf3}
+.itbl tbody tr:nth-child(even) td{background:#efdcc0}
+.itbl td.sh{text-align:right; padding-right:10px}
+.itbl .iname{font-size:19px; font-weight:900}
+.itbl .sub{font-size:14px; font-weight:700; color:#6b4a2f; margin-top:3px}
+.itbl td.amt{direction:ltr; font-size:clamp(12px,3.4vw,18px); font-weight:900; white-space:nowrap; padding-left:3px; padding-right:3px}
+.itbl tfoot td{background:#dcc19b; font-weight:900; font-size:18px}
+.itbl tfoot td.amt{font-size:clamp(13px,3.6vw,20px); color:#5a1f10}
+.itbl .emp{color:#6b4a2f}
+.itbl .row-actions{display:flex; gap:6px; justify-content:flex-start; margin-top:6px}
+.itbl .row-actions .mini{padding:5px 9px; font-size:13px}
+.notes-tbl{margin-top:14px}
+.notes-tbl td.ntxt{text-align:right; font-size:17px; line-height:1.8; font-weight:700; padding:12px}
 
-/* ---------- Invoice image v2 (fixed widths, no overflow) ---------- */
-#capture{width:900px;box-sizing:border-box;padding:40px;background:#fff;border:6px solid #15803d;border-radius:26px;overflow:hidden;font-family:Vazirmatn,Tahoma,sans-serif;color:#0f172a}
-#capture .c2-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:3px solid #1d4ed8;margin-bottom:24px}
-#capture .c2-title{font-size:60px;font-weight:900;color:#1d4ed8;line-height:1.3}
-#capture .c2-code{font-size:26px;font-weight:800;background:#eff6ff;color:#1d4ed8;border-radius:14px;padding:10px 20px}
-#capture .c2-table{width:100%;border-collapse:collapse;table-layout:fixed}
-#capture .c2-table th{background:#0f172a;color:#fff;font-size:20px;font-weight:800;padding:14px 4px;text-align:center;line-height:1.5}
-#capture .c2-table td{font-size:24px;font-weight:700;padding:14px 6px;text-align:center;border-top:2px solid #e2e8f0;word-break:break-word;overflow-wrap:anywhere}
-#capture .c2-table tbody tr:nth-child(even) td{background:#f8fafc}
-#capture .c2-ltr{direction:ltr;unicode-bidi:plaintext;white-space:nowrap}
-#capture .c2-total{margin-top:24px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fef9c3;border:3px solid #eab308;border-radius:18px;padding:20px 26px}
-#capture .c2-total span{font-size:26px;font-weight:800;color:#713f12}
-#capture .c2-total strong{font-size:40px;font-weight:900;color:#854d0e}
-#capture .c2-foot{display:flex;gap:16px;margin-top:22px;align-items:stretch}
-#capture .c2-notes{flex:1;border:2px solid #e2e8f0;border-radius:16px;padding:16px 20px;min-height:110px}
-#capture .c2-date{width:250px;flex:none;border:2px solid #e2e8f0;border-radius:16px;padding:16px;text-align:center}
-#capture .c2-foot h4{margin:0 0 8px;font-size:22px;font-weight:800;color:#1d4ed8}
-#capture .c2-foot p{margin:0;font-size:24px;font-weight:700;line-height:1.8;word-break:break-word}
-
-/* ---------- Invoice image v3 (phone-friendly width, currency tags) ---------- */
-#capture{width:720px;box-sizing:border-box;padding:24px;border:5px solid #15803d;border-radius:22px;background:#fff;font-family:Vazirmatn,Tahoma,sans-serif;color:#0f172a;overflow:hidden}
-#capture .c3-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:14px;border-bottom:3px solid #1d4ed8;margin-bottom:16px}
-#capture .c3-title{font-size:40px;font-weight:900;color:#1d4ed8;line-height:1.3}
-#capture .c3-code{font-size:19px;font-weight:800;background:#eff6ff;color:#1d4ed8;border-radius:12px;padding:6px 14px}
-#capture .c3-table{width:100%;border-collapse:collapse;table-layout:fixed}
-#capture .c3-table th{background:#0f172a;color:#fff;font-size:17px;font-weight:800;padding:10px 3px;text-align:center;line-height:1.4}
-#capture .c3-table td{font-size:18px;font-weight:700;padding:10px 6px;text-align:center;border-top:2px solid #e2e8f0;word-break:break-word;overflow-wrap:anywhere;vertical-align:middle}
-#capture .c3-table tbody tr:nth-child(even) td{background:#f8fafc}
-#capture .c3-money{display:flex;justify-content:space-between;align-items:center;gap:4px}
-#capture .c3-val{font-size:18px;font-weight:900;color:#0f172a}
-#capture .c3-cur{font-size:11px;font-weight:800;color:#0e7490;background:#ecfeff;border:1px solid #a5f3fc;border-radius:6px;padding:1px 4px;white-space:nowrap}
-#capture .c3-total{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fef9c3;border:3px solid #eab308;border-radius:16px;padding:14px 18px}
-#capture .c3-lbl{font-size:20px;font-weight:800;color:#713f12}
-#capture .c3-total .c3-val{font-size:30px;font-weight:900;color:#854d0e}
-#capture .c3-total .c3-cur{font-size:15px;background:#fff}
-#capture .c3-foot{display:flex;gap:12px;margin-top:16px}
-#capture .c3-notes{flex:1;border:2px solid #e2e8f0;border-radius:14px;padding:12px 14px;min-height:90px}
-#capture .c3-date{width:190px;flex:none;border:2px solid #e2e8f0;border-radius:14px;padding:12px;text-align:center}
-#capture .c3-foot h4{margin:0 0 6px;font-size:17px;font-weight:800;color:#1d4ed8}
-#capture .c3-foot p{margin:0;font-size:18px;font-weight:700;line-height:1.7;word-break:break-word}
-
-/* ---------- Design 2 (dark) ---------- */
-body.theme2{background:#0b1020;color:#e2e8f0}
-body.theme2 .welcome{background:#0b1020}
-body.theme2 .welcome-card,body.theme2 .modal{background:#131a2e;border-color:#243049;color:#e2e8f0}
-body.theme2 .welcome-name{color:#f8fafc}
-body.theme2 .welcome-desc{color:#cbd5e1}
-body.theme2 .welcome-label,body.theme2 .notice,body.theme2 .empty,body.theme2 .cal-week div{color:#94a3b8}
-body.theme2 .hero{background:linear-gradient(135deg,#0f766e,#1e1b4b);box-shadow:0 18px 40px rgba(0,0,0,.45)}
-body.theme2 .card{background:#131a2e;border-color:#243049;box-shadow:none}
-body.theme2 .card-title,body.theme2 .field label{color:#e2e8f0}
-body.theme2 .badge{background:#1e293b;color:#67e8f9}
-body.theme2 input,body.theme2 select,body.theme2 textarea{background:#0b1020;border-color:#243049;color:#f8fafc}
-body.theme2 input:focus,body.theme2 select:focus,body.theme2 textarea:focus{background:#0b1020;border-color:#22d3ee;box-shadow:0 0 0 4px rgba(34,211,238,.15)}
-body.theme2 .cur-wrap select{background:#0b1020;color:#f8fafc}
-body.theme2 .code-display{background:#0b1020;color:#67e8f9}
-body.theme2 .btn-add{background:linear-gradient(135deg,#22d3ee,#0891b2);color:#042f2e}
-body.theme2 .btn-save{background:linear-gradient(135deg,#f59e0b,#d97706)}
-body.theme2 .btn-restore{background:linear-gradient(135deg,#a78bfa,#7c3aed)}
-body.theme2 .btn-img{background:linear-gradient(135deg,#38bdf8,#0284c7)}
-body.theme2 .btn-clear,body.theme2 .btn-ghost,body.theme2 .icon-btn,body.theme2 .cal-head button{background:#1e293b;color:#e2e8f0;border-color:#334155}
-body.theme2 .tbl-wrap{border-color:#243049}
-body.theme2 table{background:#131a2e}
-body.theme2 th{background:#0b1020;color:#67e8f9}
-body.theme2 td{color:#e2e8f0;border-color:#243049}
-body.theme2 tbody tr:nth-child(even) td{background:#161f36}
-body.theme2 tbody tr:hover td{background:#1e2a47}
-body.theme2 .num{color:#c4b5fd}
-body.theme2 .money{color:#67e8f9}
-body.theme2 .total{background:linear-gradient(135deg,#422006,#78350f);border-color:#f59e0b;box-shadow:none}
-body.theme2 .total small{color:#fcd34d}
-body.theme2 .total strong{color:#fde68a}
-body.theme2 .modal-title{color:#67e8f9}
-body.theme2 .cal-days button{background:#1e293b;color:#e2e8f0}
-body.theme2 .cal-days button.selected{background:#22d3ee;color:#042f2e}
-body.theme2 .saved-card{background:#0b1020;border-color:#243049}
-body.theme2 .saved-info span{color:#94a3b8}
-body.theme2 .toast{background:#e2e8f0;color:#0b1020}
-body.theme2 .toast.error{background:#dc2626;color:#fff}
-body.theme2 .toast.ok{background:#16a34a;color:#fff}
+/* ---------- App invoice: compact, all columns visible, actions shown on long press ---------- */
+.app-view{padding:10px}
+.app-view .inv-head{margin-bottom:8px;padding-bottom:6px}
+.app-view .inv-title{font-size:20px}
+.app-view .inv-meta{font-size:13px;padding:4px 8px}
+.app-view .itbl th{font-size:12px;padding:6px 2px}
+.app-view .itbl td{font-size:13px;padding:6px 3px}
+.app-view .itbl td.sh{padding-right:6px}
+.app-view .itbl .iname{font-size:14px}
+.app-view .itbl .sub{font-size:11px}
+.app-view .itbl td.amt{font-size:12px}
+.app-view .itbl tfoot td{font-size:13px}
+.app-view .itbl tfoot td.amt{font-size:13px}
+.app-view .notes-tbl td.ntxt{font-size:13px;padding:8px}
+.app-view .itbl tbody tr{-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
+.app-view .itbl .row-actions{display:none;justify-content:center}
+.app-view .itbl .row-actions .mini{padding:6px 10px;font-size:12px}
+.app-view .itbl tbody tr.sel td{background:#dcc19b}
+.app-view .itbl tbody tr.sel .row-actions{display:flex}
+.app-view .itbl td.qt{font-size:13px;font-weight:900;padding:6px 2px}
+.app-view .app-tbl th{font-size:11px;padding:6px 2px;line-height:1.3}
+.app-view .app-tbl td.sh{text-align:right;padding-right:4px;padding-left:4px}
+.app-view .app-tbl .iname{font-size:13px;line-height:1.4}
+.app-view .app-tbl td.amt{font-size:11px;padding:6px 2px}
+.app-view .app-tbl tfoot td{font-size:12px;padding:6px 3px}
+.app-view .app-tbl tfoot td.amt{font-size:12px}
+.app-view .app-tbl .row-actions{margin-top:4px;gap:4px}
+.app-view .app-tbl .row-actions .mini{padding:4px 7px;font-size:11px}
+.app-view .app-tbl th.h-name{background:#6b4a2f}
+.app-view .app-tbl th.h-qty{background:#3d6b4f}
+.app-view .app-tbl th.h-unit{background:#2f5d8a}
+.app-view .app-tbl th.h-total{background:#8a2f3d}
+.app-view .app-tbl .tm{font-size:8px;font-weight:700;line-height:1.2;margin-top:1px}
+.app-view .app-tbl .tm-u{color:#2f5d8a}
+.app-view .app-tbl .tm-t{color:#8a2f3d}
+.app-view .total-tbl{width:72%;margin:12px auto 0;border-collapse:separate;border-spacing:0;border:2px solid #a5835c;border-radius:110px 110px 18px 18px/46px 46px 18px 18px;overflow:hidden;background:#efdcc0}
+.app-view .total-tbl td{border:none;background:#efdcc0;color:#3b2415;text-align:center;padding:4px 6px}
+.app-view .total-tbl td.tl{font-size:14px;font-weight:900;padding:14px 6px 2px}
+.app-view .total-tbl td.amt{font-size:15px;font-weight:900;padding:4px 6px 10px}
+.app-view .total-tbl td.amt .tm{font-size:8px;color:#8a2f3d}
 
 /* ---------- Responsive ---------- */
 @media (max-width:640px){
@@ -317,7 +275,6 @@ body.theme2 .toast.ok{background:#16a34a;color:#fff}
   <header class="hero">
     <div class="hero-top">
       <button class="chip" id="dateBtn" type="button" title="تغییر تاریخ">📅 <span id="pageDate"></span></button>
-      <button class="chip" id="themeBtn" type="button" title="تغییر دیزاین" style="margin-right:10px">🎨 دیزاین</button>
     </div>
     <h1>فاکتور</h1>
     <div class="hero-bottom">
@@ -342,37 +299,28 @@ body.theme2 .toast.ok{background:#16a34a;color:#fff}
   <section class="card">
     <div class="card-head"><h2 class="card-title">➕ افزودن جنس</h2></div>
     <div class="form-grid">
-      <div class="field"><label for="name">جنس</label><input id="name" autocomplete="off"></div>
-      <div class="field"><label for="qty">مقدار</label><input id="qty" type="number" min="0" step="0.01"></div>
+      <div class="field"><label for="name">شرح یا اسم جنس</label><input id="name" autocomplete="off"></div>
+      <div class="field"><label for="qty">تعداد</label><input id="qty" type="number" min="0" step="0.01"></div>
       <div class="field"><label for="unit">واحد</label>
         <select id="unit">
           <option value=""></option><option>کیلو</option><option>گرم</option><option>پاکت</option><option>بسته</option><option>عدد</option><option>قوطی</option><option>شانه</option>
         </select>
       </div>
-      <div class="field"><label for="price">قیمت جنس (<span data-currency>افغانی</span>)</label><input id="price" inputmode="numeric" autocomplete="off"></div>
+      <div class="field"><label for="price">قیمت واحد (<span data-currency>افغانی</span>)</label><input id="price" inputmode="numeric" autocomplete="off"></div>
     </div>
     <button class="btn btn-add" id="addBtn" type="button">＋ افزودن جنس به فاکتور</button>
   </section>
 
-  <!-- Items -->
+  <!-- Invoice -->
   <section class="card">
     <div class="card-head">
-      <h2 class="card-title">🧾 اقلام فاکتور</h2>
+      <h2 class="card-title">🧾 فاکتور</h2>
       <span class="badge" id="count">۰ جنس</span>
     </div>
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr><th>شماره</th><th>جنس</th><th>مقدار</th><th>واحد</th><th>قیمت واحد (<span data-currency>افغانی</span>)</th><th>جمع مبلغ (<span data-currency>افغانی</span>)</th><th>عملیات</th></tr>
-        </thead>
-        <tbody id="rows"></tbody>
-      </table>
-    </div>
-    <div class="empty" id="empty">هنوز جنسی اضافه نشده است.</div>
-
-    <div class="total">
-      <small>جمع مبلغ کل (<span data-currency>افغانی</span>)</small>
-      <strong id="total">۰</strong>
+    <div class="inv app-view" id="invoiceView">
+      <div class="inv-head"><div class="inv-title">فاکتور</div><div class="inv-meta" id="invMeta"></div></div>
+      <div id="invBody"></div>
+      <div id="notesBox"></div>
     </div>
 
     <div class="field" style="margin-top:18px">
@@ -443,6 +391,13 @@ body.theme2 .toast.ok{background:#16a34a;color:#fff}
 
 <script>
 const $=id=>document.getElementById(id);
+/* ---------- Safe storage ---------- */
+const memStore={};
+let storageOk=true;
+const store={
+  get(k){ if(k in memStore) return memStore[k]; try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); delete memStore[k]; return true; }catch(e){ storageOk=false; memStore[k]=v; return false; } }
+};
 const pMonths=['حمل','ثور','جوزا','سرطان','اسد','سنبله','میزان','عقرب','قوس','جدی','دلو','حوت'];
 let items=[], editIndex=-1, invoiceDate=new Date(), currentSavingId=null, currentInvoiceCode='';
 let pcYear, pcMonth, pcTempDate=null, toastTimer;
@@ -455,7 +410,7 @@ const lineTotal=x=>clean(x.qty)*clean(x.price);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const toEnglishDigits=v=>String(v??'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
 const faDate=d=>d.toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
-const getCurrency=()=>localStorage.getItem('invoiceCurrency')||'AFN';
+const getCurrency=()=>store.get('invoiceCurrency')||'AFN';
 const currencyName=()=>getCurrency()==='TOMAN'?'تومان':'افغانی';
 const getPhoneToday=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate(),12,0,0,0)};
 const getJalaliToday=()=>{const d=getPhoneToday();return gregorianToJalali(d.getFullYear(),d.getMonth()+1,d.getDate())};
@@ -559,6 +514,7 @@ function formatPriceInput(){
 function addOrUpdateItem(){
   const name=$('name').value.trim();
   if(!name){ toast('لطفاً جنس را وارد کنید.','error'); $('name').focus(); return; }
+  if(!(clean($('qty').value)>0)){ toast('تعداد را وارد کنید.','error'); $('qty').focus(); return; }
   const obj={name,qty:clean($('qty').value),unit:$('unit').value,price:parseMoney($('price').value)};
   const wasEdit=editIndex>=0;
   if(wasEdit) items[editIndex]=obj; else items.push(obj);
@@ -578,44 +534,68 @@ window.deleteItem=i=>{
     render(); saveDraft(); toast('جنس حذف شد');
   }
 };
+const qtyFmt=n=>new Intl.NumberFormat('fa-IR',{maximumFractionDigits:2}).format(Number(n)||0);
+function invTable(actions){
+  const cur=currencyName();
+  const total=items.reduce((s,x)=>s+lineTotal(x),0);
+  if(actions){
+    // App view: جنس | تعداد | مبلغ واحد | مبلغ کل, each column with its own color; total in a separate centered table
+    const body=items.length
+      ? items.map((x,i)=>`<tr data-i="${i}">
+          <td class="sh"><div class="iname">${esc(x.name)}</div><div class="row-actions"><button class="mini edit" data-act="edit" data-i="${i}" type="button">ویرایش</button><button class="mini del" data-act="del" data-i="${i}" type="button">حذف</button></div></td>
+          <td class="qt">${qtyFmt(x.qty)}<div class="sub">${esc(x.unit)}</div></td>
+          <td class="amt"><div>${fmt(x.price)}</div><div class="tm tm-u">${cur}</div></td>
+          <td class="amt"><div>${fmt(lineTotal(x))}</div><div class="tm tm-t">${cur}</div></td>
+        </tr>`).join('')
+      : `<tr><td colspan="4" class="emp">هنوز جنسی اضافه نشده است.</td></tr>`;
+    return `<table class="itbl app-tbl">
+      <colgroup><col style="width:34%"><col style="width:16%"><col style="width:24%"><col style="width:26%"></colgroup>
+      <thead><tr><th class="h-name">شرح یا اسم جنس</th><th class="h-qty">تعداد</th><th class="h-unit">مبلغ واحد</th><th class="h-total">مبلغ کل</th></tr></thead>
+      <tbody>${body}</tbody>
+    </table>
+    <table class="itbl total-tbl"><tbody><tr><td class="tl">مبلغ کل فاکتور</td></tr><tr><td class="amt"><div>${fmt(total)}</div><div class="tm tm-t">${cur}</div></td></tr></tbody></table>`;
+  }
+  const body=items.length
+    ? items.map((x,i)=>`<tr data-i="${i}">
+        <td>${fmt(i+1)}</td>
+        <td class="sh"><div class="iname">${esc(x.name)}</div><div class="sub">تعداد: ${qtyFmt(x.qty)} ${esc(x.unit)}</div></td>
+        <td class="amt">${fmt(x.price)}</td>
+        <td class="amt">${fmt(lineTotal(x))}</td>
+      </tr>`).join('')
+    : `<tr><td colspan="4" class="emp">هنوز جنسی اضافه نشده است.</td></tr>`;
+  return `<table class="itbl">
+    <colgroup><col style="width:10%"><col style="width:40%"><col style="width:25%"><col style="width:25%"></colgroup>
+    <thead><tr><th>شماره</th><th>شرح یا اسم جنس</th><th>قیمت واحد (${cur})</th><th>قیمت کل (${cur})</th></tr></thead>
+    <tbody>${body}</tbody>
+    <tfoot><tr><td colspan="3">مبلغ کل فاکتور (${cur})</td><td class="amt">${fmt(total)}</td></tr></tfoot>
+  </table>`;
+}
+function notesBlock(){
+  const t=esc($('notes').value.trim()).replace(/\n/g,'<br>')||'—';
+  return `<table class="itbl notes-tbl"><thead><tr><th>توضیحات</th></tr></thead><tbody><tr><td class="ntxt">${t}</td></tr></tbody></table>`;
+}
 function render(){
   updateCodeUI();
-  const tb=$('rows'); tb.innerHTML='';
-  items.forEach((x,i)=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`
-      <td class="num">${fmt(i+1)}</td>
-      <td>${esc(x.name)}</td>
-      <td class="num">${fmt(x.qty)}</td>
-      <td>${esc(x.unit)}</td>
-      <td class="money">${fmt(x.price)}</td>
-      <td class="money">${fmt(lineTotal(x))}</td>
-      <td><div class="row-actions">
-        <button class="mini edit" data-act="edit" data-i="${i}" type="button">ویرایش</button>
-        <button class="mini del" data-act="del" data-i="${i}" type="button">حذف</button>
-      </div></td>`;
-    tb.appendChild(tr);
-  });
-  $('empty').style.display=items.length?'none':'block';
-  const total=items.reduce((s,x)=>s+lineTotal(x),0);
-  $('total').textContent=fmt(total)+' : '+currencyName();
+  $('invBody').innerHTML=invTable(true);
+  $('invMeta').textContent='کد: '+(currentInvoiceCode||'---')+'  |  '+faDate(invoiceDate);
+  $('notesBox').innerHTML=notesBlock();
   $('count').textContent=fmt(items.length)+' جنس';
 }
 
 /* ---------- Draft ---------- */
 function saveDraft(){
-  localStorage.setItem('invoiceDraft',JSON.stringify({
+  store.set('invoiceDraft',JSON.stringify({
     items, notes:$('notes').value, currentInvoiceCode, invoiceDate:invoiceDate.toISOString(), currency:getCurrency(), currentSavingId
   }));
 }
 function loadDraft(){
   try{
-    const saved=JSON.parse(localStorage.getItem('invoiceDraft')||'{}');
+    const saved=JSON.parse(store.get('invoiceDraft')||'{}');
     items=Array.isArray(saved.items)?saved.items:[];
     $('notes').value=saved.notes||'';
     currentInvoiceCode=saved.currentInvoiceCode||'';
     currentSavingId=saved.currentSavingId||null;
-    if(saved.currency==='AFN'||saved.currency==='TOMAN') localStorage.setItem('invoiceCurrency',saved.currency);
+    if(saved.currency==='AFN'||saved.currency==='TOMAN') store.set('invoiceCurrency',saved.currency);
     invoiceDate=saved.invoiceDate?new Date(saved.invoiceDate):getPhoneToday();
   }catch{
     items=[]; $('notes').value=''; invoiceDate=getPhoneToday(); currentSavingId=null; currentInvoiceCode='';
@@ -631,28 +611,37 @@ function clearInvoice(){
 
 /* ---------- Saved invoices ---------- */
 function getSavedList(){
-  try{ return JSON.parse(localStorage.getItem('savedInvoicesList')||'[]'); }catch{ return []; }
+  try{ return JSON.parse(store.get('savedInvoicesList')||'[]'); }catch{ return []; }
 }
-function setSavedList(list){ localStorage.setItem('savedInvoicesList',JSON.stringify(list)); }
+function setSavedList(list){ store.set('savedInvoicesList',JSON.stringify(list)); }
 
 function saveInvoice(){
   if(!items.length){ toast('اول حداقل یک جنس اضافه کنید.','error'); return; }
-  const savedList=getSavedList();
-  const inv={
-    id:currentSavingId||('inv_'+Date.now()),
-    invoiceCode:currentInvoiceCode,
-    items,
-    notes:$('notes').value,
-    total:items.reduce((s,x)=>s+lineTotal(x),0),
-    currency:getCurrency(),
-    date:invoiceDate.toISOString(),
-    shamsiDate:faDate(invoiceDate)
-  };
-  const idx=savedList.findIndex(x=>x.id===inv.id);
-  if(idx>=0) savedList[idx]=inv;
-  else { savedList.unshift(inv); currentSavingId=inv.id; }
-  setSavedList(savedList); saveDraft();
-  toast(idx>=0?'فاکتور به‌روزرسانی شد':'فاکتور با موفقیت ثبت شد');
+  try{
+    const savedList=getSavedList();
+    const inv={
+      id:currentSavingId||('inv_'+Date.now()),
+      invoiceCode:currentInvoiceCode,
+      items,
+      notes:$('notes').value,
+      total:items.reduce((s,x)=>s+lineTotal(x),0),
+      currency:getCurrency(),
+      date:invoiceDate.toISOString(),
+      shamsiDate:faDate(invoiceDate)
+    };
+    const idx=savedList.findIndex(x=>x.id===inv.id);
+    if(idx>=0) savedList[idx]=inv;
+    else { savedList.unshift(inv); currentSavingId=inv.id; }
+    setSavedList(savedList); saveDraft();
+    if(!storageOk){
+      toast('فاکتور ثبت شد، اما حافظه مرورگر در دسترس نیست و تا بستن برنامه می‌ماند.','error');
+      return;
+    }
+    toast(idx>=0?'فاکتور به‌روزرسانی شد':'فاکتور با موفقیت ثبت شد');
+  }catch(err){
+    console.error(err);
+    toast('ثبت فاکتور انجام نشد. دوباره تلاش کنید.','error');
+  }
 }
 
 function openRestore(){ renderSavedList(); openModal('restoreModal'); }
@@ -687,7 +676,7 @@ function loadInvoice(id){
   $('notes').value=inv.notes||'';
   currentInvoiceCode=inv.invoiceCode||'';
   invoiceDate=inv.date?new Date(inv.date):getPhoneToday();
-  if(inv.currency) localStorage.setItem('invoiceCurrency',inv.currency);
+  if(inv.currency) store.set('invoiceCurrency',inv.currency);
   resetForm(); updateCurrencyDisplay(); updateDateDisplay(); render(); saveDraft();
   closeModal('restoreModal');
   toast('فاکتور برای ویرایش بارگذاری شد.');
@@ -748,63 +737,13 @@ function importInvoiceFile(event){
 
 /* ---------- Image export ---------- */
 function buildCapture(){
-  const total=items.reduce((s,x)=>s+lineTotal(x),0);
-  const cur=currencyName();
-  const money=v=>`<div class="c3-money"><span class="c3-val">${fmt(v)}</span><span class="c3-cur">${cur}</span></div>`;
-  const notesHtml=esc($('notes').value.trim()).replace(/\n/g,'<br>')||'—';
-  const rows=items.map((x,i)=>`<tr><td>${fmt(i+1)}</td><td>${esc(x.name)}</td><td>${fmt(x.qty)}</td><td>${esc(x.unit)}</td><td>${money(x.price)}</td><td>${money(lineTotal(x))}</td></tr>`).join('');
+  // Same markup as the in-app invoice, without the edit/delete buttons
+  const appTable=invTable(true).replace(/<div class="row-actions">[\s\S]*?<\/div>/g,'');
   $('capture').innerHTML=`
-    <div class="c3-head"><div class="c3-title">فاکتور</div><div class="c3-code">کد: ${esc(currentInvoiceCode||'---')}</div></div>
-    <table class="c3-table">
-      <colgroup><col style="width:56px"><col style="width:180px"><col style="width:80px"><col style="width:80px"><col style="width:133px"><col style="width:133px"></colgroup>
-      <thead><tr><th>شماره</th><th>جنس</th><th>مقدار</th><th>واحد</th><th>قیمت واحد</th><th>مبلغ کل</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div class="c3-total"><span class="c3-lbl">مبلغ کل</span>${money(total)}</div>
-    <div class="c3-foot">
-      <div class="c3-notes"><h4>توضیحات</h4><p>${notesHtml}</p></div>
-      <div class="c3-date"><h4>تاریخ ثبت فاکتور</h4><p>${faDate(invoiceDate)}</p></div>
-    </div>`;
-}
-function buildCaptureV1(){
-  const total=items.reduce((s,x)=>s+lineTotal(x),0);
-  const cur=currencyName();
-  const notesHtml=esc($('notes').value.trim()).replace(/\n/g,'<br>')||'—';
-  const rows=items.map((x,i)=>`<tr><td>${fmt(i+1)}</td><td>${esc(x.name)}</td><td class="c2-ltr">${fmt(x.qty)}</td><td>${esc(x.unit)}</td><td class="c2-ltr">${fmt(x.price)}</td><td class="c2-ltr">${fmt(lineTotal(x))}</td></tr>`).join('');
-  $('capture').innerHTML=`
-    <div class="c2-head"><div class="c2-title">فاکتور</div><div class="c2-code">کد: ${esc(currentInvoiceCode||'---')}</div></div>
-    <table class="c2-table">
-      <colgroup><col style="width:70px"><col style="width:258px"><col style="width:100px"><col style="width:100px"><col style="width:140px"><col style="width:140px"></colgroup>
-      <thead><tr><th>شماره</th><th>جنس</th><th>مقدار</th><th>واحد</th><th>قیمت واحد (${cur})</th><th>جمع مبلغ (${cur})</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div class="c2-total"><span>جمع مبلغ کل</span><strong>${fmt(total)} : ${cur}</strong></div>
-    <div class="c2-foot">
-      <div class="c2-notes"><h4>توضیحات</h4><p>${notesHtml}</p></div>
-      <div class="c2-date"><h4>تاریخ ثبت فاکتور</h4><p>${faDate(invoiceDate)}</p></div>
-    </div>`;
-}
-function buildCaptureOld(){
-  const total=items.reduce((s,x)=>s+lineTotal(x),0);
-  const cur=currencyName();
-  const notesHtml=esc($('notes').value.trim()).replace(/\n/g,'<br>');
-  const rows=items.map((x,i)=>`<tr><td>${fmt(i+1)}</td><td>${esc(x.name)}</td><td>${fmt(x.qty)}</td><td>${esc(x.unit)}</td><td>${fmt(x.price)}</td><td>${fmt(lineTotal(x))}</td></tr>`).join('');
-  $('capture').innerHTML=`
-    <div class="cap-head">
-      <div class="cap-title">فاکتور</div>
-      <div class="cap-meta">
-        <div>کد: ${esc(currentInvoiceCode||'---')}</div>
-        <div>تاریخ: ${faDate(invoiceDate)}</div>
-      </div>
-    </div>
-    <table class="cap-table">
-      <thead><tr><th style="width:9%">شماره</th><th style="width:31%">جنس</th><th style="width:12%">مقدار</th><th style="width:12%">واحد</th><th style="width:18%">قیمت واحد (${cur})</th><th style="width:18%">جمع مبلغ (${cur})</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div class="cap-total"><span>جمع مبلغ کل</span><strong>${fmt(total)} : ${cur}</strong></div>
-    <div class="cap-foot">
-      <div class="cap-box"><h4>توضیحات</h4><p>${notesHtml||'—'} <span class="cap-check">✓</span></p></div>
-      <div class="cap-box"><h4>تاریخ ثبت فاکتور</h4><p>${faDate(invoiceDate)}</p></div>
+    <div class="app-view">
+      <div class="inv-head"><div class="inv-title">فاکتور</div><div class="inv-meta">کد: ${esc(currentInvoiceCode||'---')}  |  ${faDate(invoiceDate)}</div></div>
+      ${appTable}
+      ${notesBlock()}
     </div>`;
 }
 function playSuccessSound(){
@@ -824,19 +763,34 @@ function playSuccessSound(){
 }
 async function saveImage(){
   if(!items.length){ toast('اول جنس‌ها را اضافه کنید.','error'); return; }
+  if(typeof html2canvas==='undefined'){ toast('کتابخانه ساخت عکس بارگذاری نشد. اینترنت را بررسی کنید.','error'); return; }
+  let blob=null;
   try{
     buildCapture();
-    const canvas=await html2canvas($('capture'),{scale:2.5,useCORS:true,backgroundColor:'#fff',logging:false});
-    const a=document.createElement('a');
-    a.download='factor-'+(currentInvoiceCode||'000')+'.png';
-    a.href=canvas.toDataURL('image/png',1);
-    a.click();
-    playSuccessSound();
-    toast('عکس فاکتور با موفقیت ذخیره شد');
+    if(document.fonts&&document.fonts.ready) await document.fonts.ready;
+    const canvas=await html2canvas($('capture'),{scale:3,useCORS:true,backgroundColor:'#e6cfae',logging:false});
+    blob=await new Promise(r=>canvas.toBlob(r,'image/png'));
+    if(!blob){ blob=await (await fetch(canvas.toDataURL('image/png'))).blob(); }
   }catch(err){
     console.error(err);
-    toast('ذخیره عکس انجام نشد.','error');
+    toast('ساخت عکس انجام نشد.','error');
+    return;
   }
+  const name='factor-'+(currentInvoiceCode||'000')+'.png';
+  // Save directly to the Downloads folder (no share sheet)
+  const url=URL.createObjectURL(blob);
+  try{
+    const a=document.createElement('a');
+    a.href=url; a.download=name; a.rel='noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    playSuccessSound();
+    toast('عکس فاکتور در گالری/دانلودها ذخیره شد');
+  }catch(err){
+    // last resort: open the image so it can be saved with a long press
+    window.open(url,'_blank');
+    toast('عکس را با نگه داشتن انگشت ذخیره کنید.');
+  }
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
 }
 
 /* ---------- Wiring ---------- */
@@ -847,8 +801,6 @@ $('enterBtn').onclick=()=>{
 window.addEventListener('popstate',()=>$('welcome').classList.remove('hidden'));
 
 $('dateBtn').onclick=openPersianCalendar;
-$('themeBtn').onclick=()=>{const on=document.body.classList.toggle('theme2'); localStorage.setItem('fvTheme',on?'2':'1'); toast(on?'دیزاین دوم فعال شد':'دیزاین اول فعال شد');};
-if(localStorage.getItem('fvTheme')==='2') document.body.classList.add('theme2');
 $('pcPrev').onclick=()=>changePersianMonth(-1);
 $('pcNext').onclick=()=>changePersianMonth(1);
 $('pcConfirm').onclick=confirmPersianDate;
@@ -861,7 +813,7 @@ $('modalCodeInput').addEventListener('input',e=>{
 $('modalCodeInput').addEventListener('keydown',e=>{ if(e.key==='Enter') confirmCodeModal(); });
 
 $('currencySelect').addEventListener('change',e=>{
-  localStorage.setItem('invoiceCurrency',e.target.value);
+  store.set('invoiceCurrency',e.target.value);
   updateCurrencyDisplay(); render(); saveDraft();
 });
 
@@ -870,15 +822,32 @@ $('name').addEventListener('keydown',e=>{ if(e.key==='Enter') $('qty').focus(); 
 $('price').addEventListener('input',formatPriceInput);
 $('price').addEventListener('blur',formatPriceInput);
 $('price').addEventListener('paste',()=>setTimeout(formatPriceInput,0));
-$('notes').addEventListener('input',saveDraft);
+$('notes').addEventListener('input',()=>{saveDraft(); render();});
 
-$('rows').addEventListener('click',e=>{
+$('invBody').addEventListener('click',e=>{
   const btn=e.target.closest('button[data-act]'); if(!btn) return;
   const i=Number(btn.dataset.i);
   if(btn.dataset.act==='edit') editItem(i); else deleteItem(i);
 });
 
 $('saveBtn').onclick=saveInvoice;
+/* long press (or right click) on an item shows edit/delete for that item only */
+(()=>{
+  const ib=$('invBody'); let timer=null, sx=0, sy=0;
+  const rowOf=e=>e.target.closest('tbody tr[data-i]');
+  const clearSel=()=>document.querySelectorAll('#invBody tr.sel').forEach(r=>r.classList.remove('sel'));
+  ib.addEventListener('pointerdown',e=>{
+    const tr=rowOf(e); if(!tr||e.target.closest('button')) return;
+    sx=e.clientX; sy=e.clientY; clearTimeout(timer);
+    timer=setTimeout(()=>{ clearSel(); tr.classList.add('sel'); if(navigator.vibrate) navigator.vibrate(15); },450);
+  });
+  ib.addEventListener('pointermove',e=>{ if(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10) clearTimeout(timer); });
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>ib.addEventListener(ev,()=>clearTimeout(timer)));
+  ib.addEventListener('contextmenu',e=>{ const tr=rowOf(e); if(!tr) return; e.preventDefault(); clearSel(); tr.classList.add('sel'); });
+  document.addEventListener('pointerdown',e=>{ if(!e.target.closest('#invBody')) clearSel(); });
+})();
+
+
 $('restoreBtn').onclick=openRestore;
 $('imageBtn').onclick=saveImage;
 $('clearBtn').onclick=clearInvoice;
